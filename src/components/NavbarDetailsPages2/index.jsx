@@ -85,25 +85,6 @@ const NavbarDetailsPages2 = ({ dir, dataAllLangs, stieName, dataPreliminaries, d
                 </div>
               </div>
 
-              {/* 
-              {isSearchOpen &&
-                <motion.div
-                  initial={{ opacity: 0, y: 50 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 1 }}
-                  transition={{ duration: 0.5 }}
-                  ref={searchRef}
-                  className={styles.search}>
-                  <div className={styles.input_container}>
-
-                    <input type="text" />
-                    <div className={styles.icon_container}>
-                      <IoIosSearch />
-                    </div>
-
-                  </div>
-                </motion.div>
-              } */}
 
 
 
@@ -115,37 +96,7 @@ const NavbarDetailsPages2 = ({ dir, dataAllLangs, stieName, dataPreliminaries, d
         </div>
       </nav>
 
-      {/* {isSearchOpen &&
-        <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 1 }}
-          transition={{ duration: 0.5 }} className={styles.menu_container} dir={dir}>
-          <div className={styles.menu_nav}>
-            <div className={styles.close_btn} onClick={() => setIsSearchOpen(false)}>
-              <IoIosClose />
-            </div>
 
-            <div className={styles.langs}>
-              <TfiWorld />
-
-            </div>
-          </div>
-          <ul>
-
-            {Object.entries(dataAllLangs).map(([code, language]) => (
-
-              <li key={code}>
-                <a href={`/${code}${router.asPath}`} className="box">
-                  <p>{language?.native}</p>
-                  <div className={`${styles.circle} ${code === locale && styles.active}`} />
-                </a>
-              </li>
-            ))}
-
-          </ul>
-        </motion.div>
-      } */}
       {isSearchOpen && (
         <motion.div
           initial={{ opacity: 0, y: 50 }}
@@ -190,7 +141,7 @@ const NavbarDetailsPages2 = ({ dir, dataAllLangs, stieName, dataPreliminaries, d
               )
               .map((section) => (
                 <li key={`section-${section.id}`}>
-                  <Link href={`/section/${section.slug}`} className="box">
+                  <Link href={`/section/${section.slug}`} className="box" onClick={() => setIsSearchOpen(false)}>
                     <p>{highlightText(section.name)}</p>
                   </Link>
                 </li>
@@ -203,7 +154,7 @@ const NavbarDetailsPages2 = ({ dir, dataAllLangs, stieName, dataPreliminaries, d
               )
               .map((post) => (
                 <li key={`preliminary-${post.id}`}>
-                  <Link href={`/preliminaries/${post.slug}`} className="box">
+                  <Link href={`/preliminaries/${post.slug}`} className="box" onClick={() => setIsSearchOpen(false)}>
                     <p>{highlightText(post.title)}</p>
                   </Link>
                 </li>
