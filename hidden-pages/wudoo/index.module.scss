@@ -1,0 +1,73 @@
+section.wudoo {
+  .title {
+    position: absolute;
+    top: 130px;
+    left: 0;
+    z-index: 55;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    h2 {
+      text-align: center;
+      margin: 0;
+      font-weight: 700;
+      font-size: 26px;
+      color: white;
+      width: 200px;
+    }
+
+    .links {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 26px;
+      a {
+        text-decoration: none;
+      }
+      .icon_container {
+        img {
+          width: 12px;
+          height: 16px;
+          object-fit: contain;
+          margin-bottom: 2.5px;
+        }
+      }
+
+      span {
+        display: block;
+        color: #ffb787;
+
+        font-weight: 500;
+        font-size: 12px;
+      }
+
+      svg {
+        width: 12px;
+        height: 16px;
+        color: #ffb787;
+      }
+    }
+  }
+  .sec_container {
+    border-radius: 44px 44px 0px 0px;
+    background-color: #ffffff;
+    padding-top: 39px;
+    padding-right: 33px;
+    padding-left: 33px;
+    margin-top: -80px;
+    z-index: 99;
+    position: relative;
+
+    .desc {
+      p {
+        color: #3e3e3e;
+        font-size: 14px;
+        font-weight: 400;
+        text-align: justify;
+        margin: 0;
+        margin-bottom: 28px;
+      }
+    }
+  }
+}

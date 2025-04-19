@@ -1,0 +1,129 @@
+section.how_to {
+  // margin-top: 56px;
+  // margin-bottom: 56px;
+  // padding-top: 56px;
+  // padding-bottom: 56px;
+  position: relative;
+  z-index: 2;
+  background-color: rgb(239, 239, 239);
+  // background-color: red;
+  padding-top: 80px;
+  padding-bottom: 80px;
+
+  @media screen and (min-width: 992px) {
+    // display: none;
+    background-color: transparent;
+    padding-top: 40px;
+    padding-bottom: 40px;
+  }
+
+  .sec_container {
+    .cards_container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+
+      @media screen and (min-width: 992px) {
+        // display: none;
+        flex-direction: row;
+      }
+      .card {
+        width: 100%;
+        max-width: 372px;
+        height: 231px;
+        position: relative;
+        background-color: #82c62e;
+        border-radius: 26px;
+        display: flex;
+        justify-content: space-between;
+        padding-right: 32px;
+        text-decoration: unset;
+        .img_container {
+          position: absolute;
+          img {
+            border-radius: 26px;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+          }
+        }
+
+        .icon_container {
+          align-self: flex-start;
+          padding-top: 17px;
+
+          svg {
+          }
+        }
+
+        .title {
+          position: relative;
+          z-index: 1;
+          h4 {
+            padding-left: 25px;
+            padding-top: 17px;
+            margin: 0;
+            font-size: 22px;
+            color: white;
+            font-weight: 600;
+            max-width: 192px;
+            line-height: 34px;
+          }
+        }
+      }
+    }
+  }
+}
+// Ar Styles
+
+section.how_to[dir="rtl"] {
+  &::after {
+    left: unset;
+    right: 90px;
+  }
+  .sec_container {
+    .cards_container {
+      .card {
+        padding-right: unset;
+        padding-left: 32px;
+        .img_container {
+          position: absolute;
+          img {
+            border-radius: 26px;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+          }
+        }
+
+        .icon_container {
+          align-self: flex-start;
+          padding-top: 17px;
+          img {
+            transform: scaleX(-1);
+          }
+          svg {
+          }
+        }
+
+        .title {
+          position: relative;
+          z-index: 1;
+          margin-right: 32px;
+          h4 {
+            padding-left: 25px;
+            padding-top: 17px;
+            margin: 0;
+            font-size: 22px;
+            color: white;
+            font-weight: 600;
+            max-width: 192px;
+            line-height: 34px;
+          }
+        }
+      }
+    }
+  }
+}

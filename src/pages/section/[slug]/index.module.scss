@@ -1,0 +1,315 @@
+section.sections {
+  @media (min-width: 992px) {
+    margin-bottom: 80px;
+  }
+
+  .sec_container {
+    background-color: rgba(239, 239, 239, 1);
+    // z-index: 99;
+    position: relative;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    // margin-bottom: 44px;
+    padding-bottom: 44px;
+
+    .title {
+      h2 {
+        margin: 0;
+        font-weight: 700;
+        font-size: 26px;
+        color: black;
+      }
+    }
+
+    .desc {
+      margin-top: 41px;
+      p {
+        font-size: 14px;
+        font-weight: 400;
+        text-align: justify;
+        margin: 0;
+        margin-bottom: 28px;
+        // color: #3e3e3e;
+      }
+    }
+
+    .boxes_container {
+      display: flex;
+      align-items: flex-start;
+      flex-direction: column;
+      gap: 24px;
+
+      .box {
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        gap: 16px;
+
+        background-color: rgba(255, 255, 255, 1);
+        width: 100%;
+        border-radius: 20px;
+        padding: 9px;
+        .img_container {
+          flex-shrink: 0; // Prevent the image container from shrinking
+          width: 98px;
+          height: 89px;
+
+          img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 20px;
+          }
+        }
+
+        .title {
+          flex: 1; // Ensures the text takes the remaining space without overlapping
+          p {
+            font-size: 18px;
+            font-weight: 700;
+            color: black;
+            margin: 0; // Avoid unexpected margins affecting alignment
+            line-height: 1.4; // Optional: Adjust line height for better readability
+
+            // Limit the number of lines displayed
+            display: -webkit-box;
+            -webkit-line-clamp: 2; // Adjust the number of lines
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            text-overflow: ellipsis;
+          }
+        }
+      }
+    }
+  }
+}
+
+// rtl
+
+section.sections[dir="rtl"] {
+  .sec_container {
+    .title {
+      h2 {
+      }
+    }
+
+    .desc {
+      p {
+        font-size: 16px;
+        font-weight: 500;
+      }
+    }
+
+    .boxes_container {
+      display: flex;
+      align-items: flex-start;
+      .box {
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        gap: 16px;
+
+        .img_container {
+          width: 78px;
+          height: 49px;
+
+          img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 5px;
+          }
+        }
+
+        .title {
+          p {
+            font-size: 18px;
+            font-weight: 700;
+            color: black;
+          }
+        }
+      }
+    }
+  }
+}
+
+// @media screen and (min-width: 992px) {
+//   section.sections {
+//     .sec_container {
+//       .title {
+//         h2 {
+//           margin: 0;
+//           font-weight: 700;
+//           font-size: 26px;
+//           color: black;
+//         }
+//       }
+
+//       .desc {
+//         p {
+//           font-size: 14px;
+//           font-weight: 400;
+//           text-align: justify;
+//           margin: 0;
+//           margin-bottom: 28px;
+//           // color: #3e3e3e;
+//         }
+//       }
+
+//       .boxes_container {
+//         display: flex;
+//         align-items: flex-start;
+//         flex-direction: row;
+//         flex-wrap: wrap;
+//         gap: 24px;
+
+//         .box {
+//           text-decoration: none;
+//           display: flex;
+//           align-items: center;
+//           justify-content: flex-start;
+//           gap: 16px;
+//           width: fit-content;
+
+//           background-color: rgba(255, 255, 255, 1);
+//           width: 100%;
+//           border-radius: 20px;
+//           padding: 9px;
+//           .img_container {
+//             flex-shrink: 0; // Prevent the image container from shrinking
+//             width: 98px;
+//             height: 89px;
+
+//             img {
+//               width: 100%;
+//               height: 100%;
+//               object-fit: cover;
+//               border-radius: 20px;
+//             }
+//           }
+
+//           .title {
+//             flex: 1; // Ensures the text takes the remaining space without overlapping
+//             p {
+//               font-size: 18px;
+//               font-weight: 700;
+//               color: black;
+//               margin: 0; // Avoid unexpected margins affecting alignment
+//               line-height: 1.4; // Optional: Adjust line height for better readability
+
+//               // Limit the number of lines displayed
+//               display: -webkit-box;
+//               -webkit-line-clamp: 2; // Adjust the number of lines
+//               -webkit-box-orient: vertical;
+//               overflow: hidden;
+//               text-overflow: ellipsis;
+//             }
+//           }
+//         }
+//       }
+//     }
+//   }
+// }
+
+.boxes_container2 {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  flex-wrap: wrap;
+  row-gap: 14px;
+  column-gap: 20px;
+
+  @media (min-width: 992px) {
+    justify-content: flex-start;
+    max-width: 100%;
+    margin: 0 auto;
+    column-gap: 19px;
+    row-gap: 19px;
+  }
+
+  .box {
+    background-color: white;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 162px;
+    height: auto;
+    padding: 8px 9px 18px 9px;
+    box-shadow: 2px 3px 8px 0px #0000000d;
+    color: unset;
+    text-decoration: none;
+    overflow: hidden;
+    transition: all 0.3s ease;
+
+    @media (min-width: 992px) {
+      width: 277px;
+    }
+
+    .img_container {
+      img {
+        width: 155px;
+        height: 92px;
+        object-fit: cover;
+        border-radius: 24px;
+
+        @media (min-width: 992px) {
+          width: 250px;
+          height: 134px;
+          border-radius: 11px;
+        }
+      }
+    }
+
+    .title {
+      margin-top: 15px;
+      text-align: center;
+      width: 100%;
+
+      h4 {
+        font-size: 18px;
+        font-weight: 600;
+        margin: 0;
+      }
+
+      ul {
+        max-height: 0;
+        opacity: 0;
+        overflow: hidden;
+        transition: all 0.3s ease;
+        font-size: 14px;
+        font-weight: 400;
+        color: #666;
+        padding: 0 10px;
+      }
+    }
+
+    ul {
+      padding: 0;
+      margin: 0;
+      text-align: start;
+
+      li {
+        padding: 0;
+        list-style-type: circle;
+        margin-right: 10px;
+        margin-left: 10px;
+        span {
+          padding: 0;
+          margin: 0;
+
+          color: black;
+        }
+      }
+    }
+
+    &:hover .title ul {
+      max-height: 80px; // حسب طول النص
+      opacity: 1;
+      margin-top: 10px;
+    }
+  }
+}
