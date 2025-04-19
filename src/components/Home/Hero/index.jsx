@@ -153,7 +153,7 @@ const Hero = ({ dataPreliminaries, dataAllCategories, dir, dataAllWords }) => {
         </div>
       </div>
 
-      <div className="deskptop">
+      <div className="desktop">
         <div className={styles.sec_container}>
           <div className={styles.swiper_container}>
 
@@ -164,10 +164,10 @@ const Hero = ({ dataPreliminaries, dataAllCategories, dir, dataAllWords }) => {
               dir="ltr"
               modules={[Navigation, FreeMode, Autoplay]}
               loop={true}
-              autoplay={false}
-              // autoplay={{
-              //   delay: 5000,
-              // }}
+              // autoplay={false}
+              autoplay={{
+                delay: 5000,
+              }}
               initialSlide={0}
               className={styles.swiper_contain}
               centeredSlides={true}
@@ -291,24 +291,7 @@ const Hero = ({ dataPreliminaries, dataAllCategories, dir, dataAllWords }) => {
 
             <SearchInput />
 
-            {/* <motion.div
-              initial={{ scale: 0.8, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              transition={{ duration: 0.4 }}
-              className={styles.search_input_wrapper}
-            >
-              <input
-                type="text"
-                placeholder="Search..."
-                // value={searchTerm}
-                // onChange={(e) => setSearchTerm(e.target.value)}
-                className={styles.search_input}
-              />
 
-              <div className={styles.icon_container}>
-                <IoIosSearch />
-              </div>
-            </motion.div> */}
           </div>
 
 
