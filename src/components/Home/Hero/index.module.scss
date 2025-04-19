@@ -443,3 +443,22 @@ section.hero {
 }
 
 // RTL
+@media screen and (min-width: 992px) {
+  section.hero[dir="rtl"] {
+    .sec_container {
+      &:after {
+        left: unset;
+        right: 0;
+      }
+
+      .text_container2 {
+        .search_input_wrapper {
+          .icon_container {
+            right: unset;
+            left: 18px;
+          }
+        }
+      }
+    }
+  }
+}
