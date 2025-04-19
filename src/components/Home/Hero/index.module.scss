@@ -168,7 +168,7 @@ section.hero {
         top: 0;
         left: 0;
         background: linear-gradient(to right, #d4d4d4, transparent);
-        width: 110%;
+        width: 55%;
         height: 100%;
         z-index: 51;
       }
@@ -287,6 +287,95 @@ section.hero {
             font-size: 40px;
             font-weight: 700;
             margin-left: 30px;
+          }
+        }
+      }
+      .text_container2 {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        .search_input_wrapper {
+          width: 100%;
+          max-width: 309px;
+          display: flex;
+          justify-content: center;
+          padding: 8px 16px;
+          position: relative;
+          margin-top: 16px;
+          margin-bottom: 16px;
+
+          .icon_container {
+            position: absolute;
+            top: 12px;
+            right: 19px;
+            background-color: #f89147;
+            border-radius: 40px;
+            width: 62px;
+            height: 42px;
+            display: flex;
+
+            svg {
+              width: 30px;
+              height: 30px;
+              margin: auto;
+              color: white !important;
+            }
+          }
+          input {
+            width: 100%;
+            height: 50px;
+            // padding: 10px 16px;
+            font-size: 16px;
+            border: 0.5px solid #f8914740;
+            outline: none;
+            border-radius: 40px;
+            background-color: #f5f5f5;
+            transition: all 0.3s ease;
+            text-align: start;
+
+            box-shadow: 3px 3px 11px 0px #00000017;
+
+            &::placeholder {
+              font-weight: 400;
+              font-size: 14px;
+              color: #b4b4b4;
+            }
+            &:focus {
+              background-color: #e0e0e088;
+              border-color: #f89147 !important;
+            }
+          }
+
+          .dropdownMenu {
+            position: absolute;
+            top: 65px;
+            width: 100%;
+            max-width: 309px;
+            background: #ffffff;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 12px;
+            overflow: hidden;
+            z-index: 1000;
+            list-style: none;
+            padding: 0;
+            margin-top: 8px;
+
+            li {
+              width: 100%;
+
+              .dropdownItem {
+                display: block;
+                padding: 12px 16px;
+                color: #333;
+                font-size: 15px;
+                text-decoration: none;
+                transition: background-color 0.3s ease;
+
+                &:hover {
+                  background-color: #f5f5f5;
+                }
+              }
+            }
           }
         }
       }

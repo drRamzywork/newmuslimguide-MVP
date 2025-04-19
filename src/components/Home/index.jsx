@@ -13,27 +13,12 @@ const Home = () => {
   const {
     dataPostWudoo,
     dataAllSettings,
-    dataAllLangs,
     dataAllCategories,
     dataAllWords,
     dataPreliminaries,
-    dataAllSections,
     dataPostPray
   } = useSiteData();
   const dir = dataAllSettings?.dir;
-
-
-  const getPTagContent2 = (htmlString) => {
-    const parser = new DOMParser();
-    const doc = parser.parseFromString(htmlString, 'text/html');
-    const contentElements = doc.querySelectorAll('p, li');
-    // Map over NodeList of <p> and <ul> elements to extract their innerHTML
-    return Array.from(contentElements).map((element) => {
-      const tagName = element.tagName.toLowerCase();
-      return `<${tagName}>${element.innerHTML}</${tagName}>`;
-    }).join('');
-  };
-
 
   return (
     <>

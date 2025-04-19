@@ -9,9 +9,6 @@ import { motion } from 'framer-motion';
 
 
 const NavbarDetailsPages2 = ({ dir, dataAllLangs, stieName, dataPreliminaries, dataAllSections, dataAllSettings, slug, }) => {
-
-
-
   const { menulang, setMenuLang, topicsMenu, setTopicsMenu } = useMenu();
   const { locale } = useRouter();
   const [isSearchOpen, setIsSearchOpen] = useState(false);
@@ -36,8 +33,6 @@ const NavbarDetailsPages2 = ({ dir, dataAllLangs, stieName, dataPreliminaries, d
     };
   }, [isSearchOpen]);
 
-  console.log(dataAllSections, "Navbar sections")
-  console.log(dataPreliminaries, "Navbar dataPreliminaries")
   const highlightText = (text) => {
     if (!searchTerm) return text;
 
@@ -63,11 +58,8 @@ const NavbarDetailsPages2 = ({ dir, dataAllLangs, stieName, dataPreliminaries, d
   };
 
   return (
-
     <>
-
       <nav id='navbar' className={styles.navbar} dir={dir}>
-
         <div className={styles.sec_container}>
           <div className="container">
             <div className={styles.wrapper} style={{ position: 'relative' }}>
@@ -122,11 +114,6 @@ const NavbarDetailsPages2 = ({ dir, dataAllLangs, stieName, dataPreliminaries, d
 
         </div>
       </nav>
-
-
-
-
-
 
       {/* {isSearchOpen &&
         <motion.div

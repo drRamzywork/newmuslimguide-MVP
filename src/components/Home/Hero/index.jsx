@@ -10,6 +10,8 @@ import {
   motion
 
 } from 'framer-motion';
+import { IoIosSearch } from 'react-icons/io';
+import SearchInput from '@/Utils/SearchInput';
 const Hero = ({ dataPreliminaries, dataAllCategories, dir, dataAllWords }) => {
   const firtsPost = dataPreliminaries?.posts[7] || [];
 
@@ -162,11 +164,11 @@ const Hero = ({ dataPreliminaries, dataAllCategories, dir, dataAllWords }) => {
               dir="ltr"
               modules={[Navigation, FreeMode, Autoplay]}
               loop={true}
-              // autoplay={false}
-              autoplay={{
-                delay: 5000,
-              }}
-              initialSlide={1}
+              autoplay={false}
+              // autoplay={{
+              //   delay: 5000,
+              // }}
+              initialSlide={0}
               className={styles.swiper_contain}
               centeredSlides={true}
               style={{ width: '100%' }}
@@ -286,6 +288,27 @@ const Hero = ({ dataPreliminaries, dataAllCategories, dir, dataAllWords }) => {
             <Link href={`/#`} className={styles.desc}>
               <p>{dataAllWords.h_title1}</p>
             </Link>
+
+            <SearchInput />
+
+            {/* <motion.div
+              initial={{ scale: 0.8, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              transition={{ duration: 0.4 }}
+              className={styles.search_input_wrapper}
+            >
+              <input
+                type="text"
+                placeholder="Search..."
+                // value={searchTerm}
+                // onChange={(e) => setSearchTerm(e.target.value)}
+                className={styles.search_input}
+              />
+
+              <div className={styles.icon_container}>
+                <IoIosSearch />
+              </div>
+            </motion.div> */}
           </div>
 
 
