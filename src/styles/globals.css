@@ -53,14 +53,15 @@ a {
 
 @import "./styles2/custom.css";
 @import "./styles2/main.css";
-.mobile {
-  @media screen and (min-width: 992px) {
+
+@media screen and (min-width: 992px) {
+  .mobile {
     display: none;
   }
 }
 
-.desktop {
-  @media screen and (max-width: 992px) {
+@media screen and (max-width: 992px) {
+  .desktop {
     display: none;
   }
 }
