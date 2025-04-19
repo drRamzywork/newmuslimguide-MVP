@@ -8,13 +8,17 @@ import { TfiWorld } from 'react-icons/tfi';
 import { motion } from 'framer-motion';
 
 
-const NavbarDetailsPages2 = ({ imgsrc, dir, dataAllLangs, stieName, dataPreliminaries, dataAllSettings, slug, sec_color }) => {
+const NavbarDetailsPages2 = ({ dir, dataAllLangs, stieName, dataPreliminaries, dataAllSections, dataAllSettings, slug, }) => {
+
+
+
   const { menulang, setMenuLang, topicsMenu, setTopicsMenu } = useMenu();
   const { locale } = useRouter();
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const router = useRouter()
   const bookLink = dataAllSettings?.book_link;
   const searchRef = useRef(null);
+  const [searchTerm, setSearchTerm] = useState("");
 
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -31,6 +35,32 @@ const NavbarDetailsPages2 = ({ imgsrc, dir, dataAllLangs, stieName, dataPrelimin
       document.removeEventListener('mousedown', handleClickOutside);
     };
   }, [isSearchOpen]);
+
+  console.log(dataAllSections, "Navbar sections")
+  console.log(dataPreliminaries, "Navbar dataPreliminaries")
+  const highlightText = (text) => {
+    if (!searchTerm) return text;
+
+    const regex = new RegExp(`(${searchTerm})`, 'gi');
+    const parts = text.split(regex);
+
+    return parts.map((part, index) =>
+      regex.test(part) ? (
+        <span
+          key={index}
+          style={{
+            fontWeight: "bold",
+            textDecoration: "underline",
+            color: "orange",
+          }}
+        >
+          {part}
+        </span>
+      ) : (
+        part
+      )
+    );
+  };
 
   return (
 
@@ -63,7 +93,7 @@ const NavbarDetailsPages2 = ({ imgsrc, dir, dataAllLangs, stieName, dataPrelimin
                 </div>
               </div>
 
-
+              {/* 
               {isSearchOpen &&
                 <motion.div
                   initial={{ opacity: 0, y: 50 }}
@@ -81,7 +111,7 @@ const NavbarDetailsPages2 = ({ imgsrc, dir, dataAllLangs, stieName, dataPrelimin
 
                   </div>
                 </motion.div>
-              }
+              } */}
 
 
 
@@ -97,6 +127,103 @@ const NavbarDetailsPages2 = ({ imgsrc, dir, dataAllLangs, stieName, dataPrelimin
 
 
 
+
+      {/* {isSearchOpen &&
+        <motion.div
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 1 }}
+          transition={{ duration: 0.5 }} className={styles.menu_container} dir={dir}>
+          <div className={styles.menu_nav}>
+            <div className={styles.close_btn} onClick={() => setIsSearchOpen(false)}>
+              <IoIosClose />
+            </div>
+
+            <div className={styles.langs}>
+              <TfiWorld />
+
+            </div>
+          </div>
+          <ul>
+
+            {Object.entries(dataAllLangs).map(([code, language]) => (
+
+              <li key={code}>
+                <a href={`/${code}${router.asPath}`} className="box">
+                  <p>{language?.native}</p>
+                  <div className={`${styles.circle} ${code === locale && styles.active}`} />
+                </a>
+              </li>
+            ))}
+
+          </ul>
+        </motion.div>
+      } */}
+      {isSearchOpen && (
+        <motion.div
+          initial={{ opacity: 0, y: 50 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.5 }}
+          className={styles.menu_container}
+          dir={dir}
+        >
+          <div className={styles.menu_nav}>
+            <div className={styles.close_btn} onClick={() => setIsSearchOpen(false)}>
+              <IoIosClose />
+            </div>
+
+            <div className={styles.langs}>
+              <motion.div
+                initial={{ scale: 0.8, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                transition={{ duration: 0.4 }}
+                className={styles.search_input_wrapper}
+              >
+                <input
+                  type="text"
+                  placeholder="Search..."
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                  className={styles.search_input}
+                />
+
+                <div className={styles.icon_container}>
+                  <IoIosSearch />
+                </div>
+              </motion.div>
+            </div>
+          </div>
+
+          <ul>
+            {/* filter sections */}
+            {dataAllSections
+              ?.filter((section) =>
+                section.name?.toLowerCase().includes(searchTerm.toLowerCase())
+              )
+              .map((section) => (
+                <li key={`section-${section.id}`}>
+                  <Link href={`/section/${section.slug}`} className="box">
+                    <p>{highlightText(section.name)}</p>
+                  </Link>
+                </li>
+              ))}
+
+            {/* filter preliminaries */}
+            {dataPreliminaries?.posts
+              ?.filter((post) =>
+                post.title?.toLowerCase().includes(searchTerm.toLowerCase())
+              )
+              .map((post) => (
+                <li key={`preliminary-${post.id}`}>
+                  <Link href={`/preliminaries/${post.slug}`} className="box">
+                    <p>{highlightText(post.title)}</p>
+                  </Link>
+                </li>
+              ))}
+          </ul>
+        </motion.div>
+      )}
 
 
 
@@ -165,8 +292,8 @@ const NavbarDetailsPages2 = ({ imgsrc, dir, dataAllLangs, stieName, dataPrelimin
         </motion.div>
       }
 
-      {(menulang || topicsMenu) &&
-        <div className={styles.layer} onClick={() => { setMenuLang(false), setTopicsMenu(false) }} />
+      {(menulang || topicsMenu || isSearchOpen) &&
+        <div className={styles.layer} onClick={() => { setMenuLang(false), setTopicsMenu(false), setIsSearchOpen(false) }} />
       }
     </>
 

@@ -8,7 +8,6 @@ export async function getStaticPaths() {
       },
     });
 
-    // Check if the response is okay
     if (!res.ok) {
       throw new Error(`Failed to fetch slugs: ${res.status} ${res.statusText}`);
     }
@@ -20,14 +19,13 @@ export async function getStaticPaths() {
       throw new Error('Invalid API response format');
     }
 
-    // Map slugs to paths
     const paths = data.data.map((item) => {
       if (!item.slug || typeof item.slug !== 'string') {
         console.error('Invalid slug item:', item);
         throw new Error(`Invalid slug in response: ${JSON.stringify(item)}`);
       }
       return {
-        params: { id: item.slug }, // Ensure 'id' matches your dynamic route [id]
+        params: { id: item.slug },
       };
     });
 
@@ -78,7 +76,6 @@ export async function getStaticProps({ params, locale }) {
 }
 import Head from 'next/head';
 import NavbarDetailsPages from '@/components/NavbarDetailsPages';
-import Footer from '@/components/Home/Footer';
 import { useRouter } from 'next/router';
 import PreliminariesDetailsPagesSection from '@/components/PreliminariesDetailsPagesSection';
 import { useSiteData } from '@/contexts/SiteDataContext';

@@ -50,7 +50,6 @@ function MyApp({ Component, pageProps }) {
     locale,
   };
 
-
   return (
     <MenuProvider>
       <SiteDataProvider value={siteData}>
@@ -60,6 +59,7 @@ function MyApp({ Component, pageProps }) {
         >
           <NavbarDetailsPages2
             slug={"slug"}
+            dataAllSections={dataAllSections}
             dataAllSettings={dataAllSettings}
             dataPreliminaries={dataPreliminaries}
             imgsrc={dataAllSettings?.site_logo}
