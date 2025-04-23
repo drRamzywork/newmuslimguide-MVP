@@ -9,7 +9,6 @@ import NavbarDetailsPages2 from '../NavbarDetailsPages2'
 import { useSiteData } from "@/contexts/SiteDataContext";
 
 const Home = () => {
-
   const {
     dataPostWudoo,
     dataAllSettings,

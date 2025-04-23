@@ -329,7 +329,7 @@ const NavbarDetailsPages2 = ({ dataAllBooks, dir, dataAllWords, dataAllLangs, st
 
       {
         (menulang || topicsMenu || isSearchOpen || booksMenu) &&
-        <div className={styles.layer} onClick={() => { setMenuLang(false), setTopicsMenu(false), setIsSearchOpen(false) }} />
+        <div className={styles.layer} onClick={() => { setMenuLang(false), setTopicsMenu(false), setIsSearchOpen(false), setBooksMenu(false) }} />
       }
     </>
 
