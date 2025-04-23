@@ -6,14 +6,15 @@ import { useMenu } from '@/contexts/MenuContext';
 import { useRouter } from 'next/router';
 import { TfiWorld } from 'react-icons/tfi';
 import { motion } from 'framer-motion';
+import Image from 'next/image';
 
 
-const NavbarDetailsPages2 = ({ dir, dataAllWords, dataAllLangs, stieName, dataPreliminaries, dataAllSections, dataAllSettings, slug, }) => {
-  const { menulang, setMenuLang, topicsMenu, setTopicsMenu } = useMenu();
+const NavbarDetailsPages2 = ({ dataAllBooks, dir, dataAllWords, dataAllLangs, stieName, dataPreliminaries, dataAllSections, slug, }) => {
+  const { menulang, setMenuLang, topicsMenu, setTopicsMenu, booksMenu,
+    setBooksMenu } = useMenu();
   const { locale } = useRouter();
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const router = useRouter()
-  const bookLink = dataAllSettings?.book_link;
   const searchRef = useRef(null);
   const [searchTerm, setSearchTerm] = useState("");
 
@@ -76,9 +77,9 @@ const NavbarDetailsPages2 = ({ dir, dataAllWords, dataAllLangs, stieName, dataPr
                 <div className={styles.btn} onClick={() => setIsSearchOpen(prev => !prev)}>
                   <IoIosSearch />
                 </div>
-                <Link className={styles.btn} href={bookLink} target='_blanked'>
+                <div className={styles.btn} onClick={() => setBooksMenu(prev => !prev)}>
                   <img src='/assets/svgs/book.svg' alt='' />
-                </Link>
+                </div>
 
                 <div className={styles.btn} onClick={() => setTopicsMenu(prev => !prev)}>
                   <img src='/assets/svgs/boxes.svg' alt='' />
@@ -248,8 +249,86 @@ const NavbarDetailsPages2 = ({ dir, dataAllWords, dataAllLangs, stieName, dataPr
         </motion.div>
       }
 
+      {booksMenu &&
+        <motion.div
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 1 }}
+          transition={{ duration: 0.5 }} className={`${styles.topic_menu_container} ${styles.books_menu_container}`} dir={dir}>
+          <div className={styles.menu_nav}>
+            <div className={styles.close_btn} onClick={() => setBooksMenu(false)}>
+              <IoIosClose />
+            </div>
+          </div>
+          <ul>
+            <Link href={'#'}>
+              <h4>Books</h4>
+            </Link>
+            <div className={styles.books_container} >
+              {dataAllBooks?.map((book, index) => (
+                <div className={`${styles.book} ${book.lang === locale && styles.active}`} key={index}>
+                  {console.log(locale, book.lang, "locale")}
 
-      {(menulang || topicsMenu || isSearchOpen) &&
+                  <div className={styles.img_container}>
+                    <Image src={book.image} alt='' width={87.38} height={125.82} />
+                  </div>
+
+                  <div className={styles.text_container}>
+                    <div className={styles.lang}>
+                      <div className={styles.icon_container}>
+                        <Image src={'/assets/svgs/langs.svg'} alt='' width={12} height={12} />
+                      </div>
+                      <p>{locale}</p>
+                    </div>
+                    <div className={styles.title}>
+                      <h3>{book.title}</h3>
+                    </div>
+
+                    <div className={styles.info}>
+                      <div className={styles.size}>
+                        <div className={styles.icon_container}>
+                          <Image src={'/assets/svgs/size.svg'} alt='' width={12} height={12} />
+                        </div>
+                        <p>{book.size}</p>
+                      </div>
+
+                      <div className={styles.pages}>
+                        <div className={styles.icon_container}>
+                          <Image src={'/assets/svgs/pages.svg'} alt='' width={12} height={12} />
+                        </div>
+                        <p>{book.pages}</p>
+
+                      </div>
+
+                    </div>
+                    <div className={styles.nums}>
+                      <p><strong>ISBN: </strong> {book.isbn}</p>
+                      <p><strong>Edition: </strong> {book.edition}</p>
+                    </div>
+
+                    <Link target={'_blank'} href={book.pdf_link}
+                      className={styles.btn_container}>
+                      <button>
+                        PDF
+                      </button>
+                      <div className={styles.icon_container}>
+                        <Image src={'/assets/svgs/pdf.svg'} alt='' width={20} height={20} />
+                      </div>
+
+                    </Link>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </ul>
+
+
+        </motion.div >
+      }
+
+
+      {
+        (menulang || topicsMenu || isSearchOpen || booksMenu) &&
         <div className={styles.layer} onClick={() => { setMenuLang(false), setTopicsMenu(false), setIsSearchOpen(false) }} />
       }
     </>

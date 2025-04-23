@@ -34,6 +34,7 @@ function MyApp({ Component, pageProps }) {
     dataSettings,
     dataTopicsSearch,
     dataFirstTopic,
+    dataAllBooks,
     ...restPageProps
   } = pageProps;
 
@@ -54,6 +55,7 @@ function MyApp({ Component, pageProps }) {
     dataSettings,
     dataTopicsSearch,
     dataFirstTopic,
+    dataAllBooks,
   };
 
   return (
@@ -65,6 +67,7 @@ function MyApp({ Component, pageProps }) {
         >
           <NavbarDetailsPages2
             slug={"slug"}
+            dataAllBooks={dataAllBooks}
             dataAllSections={dataAllSections}
             dataAllSettings={dataAllSettings}
             dataPreliminaries={dataPreliminaries}
@@ -122,6 +125,7 @@ https: MyApp.getInitialProps = async (appContext) => {
     dataSettings,
     dataTopicsSearch,
     dataFirstTopic,
+    dataAllBooks,
   ] = await Promise.all([
     fetchData("/post/66f78a116963f"),
     fetchData("/post/670de63436400"),
@@ -134,6 +138,7 @@ https: MyApp.getInitialProps = async (appContext) => {
     fetchData("/settings"),
     fetchData("/search"),
     fetchData("/post/6410daa3a3554"),
+    fetchData("/get-books"),
   ]);
 
   const appProps = await App.getInitialProps(appContext);
@@ -153,6 +158,7 @@ https: MyApp.getInitialProps = async (appContext) => {
       dataSettings: dataSettings || [],
       dataTopicsSearch: dataTopicsSearch || [],
       dataFirstTopic: dataFirstTopic || [],
+      dataAllBooks: dataAllBooks || [],
     },
   };
 };

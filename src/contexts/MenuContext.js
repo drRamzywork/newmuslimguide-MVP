@@ -8,6 +8,7 @@ export const MenuProvider = ({ children }) => {
   const [menulang, setMenuLang] = useState(false);
   const [searchMenu, setSearchMenu] = useState(false);
   const [topicsMenu, setTopicsMenu] = useState(false);
+  const [booksMenu, setBooksMenu] = useState(false);
 
   return (
     <MenuContext.Provider
@@ -18,6 +19,8 @@ export const MenuProvider = ({ children }) => {
         setSearchMenu,
         topicsMenu,
         setTopicsMenu,
+        booksMenu,
+        setBooksMenu,
       }}
     >
       {children}

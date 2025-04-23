@@ -170,6 +170,7 @@ import {
   FaGithub,
   FaPhone
 } from 'react-icons/fa';
+import { IoMdMail } from 'react-icons/io';
 
 const Footer = ({
   dataPostWudoo,
@@ -178,7 +179,8 @@ const Footer = ({
   dataAllCategories,
   dataAllSettings,
   dir,
-  dataAllWords
+  dataAllWords,
+  dataSettings
 }) => {
   const router = useRouter();
   const currentLocale = router.locale || 'ar';
@@ -199,6 +201,7 @@ const Footer = ({
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
+
   // Social platforms mapping
   const socialPlatforms = [
     { key: 'link_facebook', Icon: FaFacebook },
@@ -208,7 +211,8 @@ const Footer = ({
     { key: 'link_telegram', Icon: FaTelegram },
     { key: 'link_whatsapp', Icon: FaWhatsapp },
     { key: 'link_tiktok', Icon: FaTiktok },
-    { key: 'link_github', Icon: FaGithub }
+    { key: 'link_github', Icon: FaGithub },
+
   ];
 
   return (
@@ -295,7 +299,7 @@ const Footer = ({
                 </div>
                 <div className={styles.social}>
                   {socialPlatforms.map(({ key, Icon }) => {
-                    const url = dataAllSettings?.[key];
+                    const url = dataSettings?.[key];
                     if (!url) return null;
                     return (
                       <a
@@ -308,16 +312,47 @@ const Footer = ({
                       </a>
                     );
                   })}
-                  {dataAllSettings?.phone && (
-                    <a href={`tel:${dataAllSettings.phone}`}>
+                  {dataSettings?.phone && (
+                    <a href={`tel:${dataSettings.phone}`}>
                       <FaPhone />
                     </a>
                   )}
-                  {dataAllSettings?.phone2 && (
-                    <a href={`tel:${dataAllSettings.phone2}`}>
+                  {dataSettings?.phone2 && (
+                    <a href={`tel:${dataSettings.phone2}`}>
                       <FaPhone />
                     </a>
                   )}
+                  {/* {dataSettings?.email && (
+                    <a href={`mailto:${dataSettings.email}`} title="Send email">
+                      <IoMdMail />
+                    </a>
+                  )} */}
+
+
+                  {dataSettings?.email && (
+                    <>
+                      {/* mailto link (opens default client, if available) */}
+                      <a
+                        href={`mailto:${dataSettings.email}`}
+                        title={`Send email to ${dataSettings.email}`}
+                        style={{ marginRight: '10px', fontSize: '1.5em' }}
+                      >
+                        <IoMdMail />
+                      </a>
+
+                      {/* fallback Gmail compose link */}
+                      <a
+                        href={`https://mail.google.com/mail/?view=cm&fs=1&to=${dataSettings.email}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        title="Open Gmail to send email"
+                        style={{ fontSize: '1.5em' }}
+                      >
+                        <IoMdMail />
+                      </a>
+                    </>
+                  )}
+
                 </div>
               </div>
 
