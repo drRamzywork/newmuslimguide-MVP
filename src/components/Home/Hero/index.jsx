@@ -6,15 +6,12 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, FreeMode, Autoplay } from 'swiper/modules';
-import {
-  motion
-
-} from 'framer-motion';
-import { IoIosSearch } from 'react-icons/io';
+import { motion } from 'framer-motion';
 import SearchInput from '@/Utils/SearchInput';
-const Hero = ({ dataPreliminaries, dataAllCategories, dir, dataAllWords }) => {
+const Hero = ({ dataPreliminaries, dir, dataAllWords, dataFirstTopic }) => {
   const firtsPost = dataPreliminaries?.posts[7] || [];
 
+  console.log(dataFirstTopic, "dataFirstTopic")
   return (
     <section id='hero' className={styles.hero} dir={dir}>
 
@@ -129,7 +126,7 @@ const Hero = ({ dataPreliminaries, dataAllCategories, dir, dataAllWords }) => {
 
             <div className={styles.text_container}>
               <Link href={'/preliminaries'} className={styles.title}>
-                <h2>{dataAllCategories[0]?.name}</h2>
+                {/* <h2>{dataAllCategories[0]?.name}</h2> */}
               </Link>
               <Link href={`/preliminaries/${firtsPost?.slug}`} className={styles.desc}>
                 <p>{firtsPost?.title}</p>
@@ -285,9 +282,9 @@ const Hero = ({ dataPreliminaries, dataAllCategories, dir, dataAllWords }) => {
 
           <div className={styles.text_container2}>
 
-            <Link href={`/#`} className={styles.desc}>
+            <div className={styles.desc}>
               <p>{dataAllWords.h_title1}</p>
-            </Link>
+            </div>
 
             <SearchInput />
 

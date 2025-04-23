@@ -11,7 +11,8 @@ const HowTo = ({ dataPostWudoo, dir, dataPostPray }) => {
           <div className={styles.cards_container}>
             <Link href={`/preliminaries/${dataPostWudoo?.slug}`} className={styles.card}>
               <div className={styles.img_container}>
-                <img src="/assets/imgs/Wudoo.png" alt="" />
+                {/* <img src="/assets/imgs/Wudoo.png" alt="" /> */}
+                <img src={dataPostWudoo.image} alt="" />
               </div>
               <div className={styles.title}>
                 <h4>{dataPostWudoo?.title}</h4>
@@ -20,6 +21,10 @@ const HowTo = ({ dataPostWudoo, dir, dataPostPray }) => {
 
             <Link href={`/preliminaries/${dataPostPray?.slug}`} className={styles.card}>
 
+              <div className={styles.img_container}>
+
+                <img src={dataPostPray.image} alt="" />
+              </div>
               <div className={styles.title}>
                 <h4>{dataPostPray?.title}</h4>
               </div>

@@ -1,5 +1,8 @@
 footer.footer {
   // padding-top: 56px;
+  @media screen and (max-width: 992px) {
+    margin-top: 80px;
+  }
   .logo_container {
     position: relative;
     z-index: 1;
@@ -54,8 +57,9 @@ footer.footer {
       justify-content: space-between;
       padding-top: 51px;
       @media screen and (min-width: 992px) {
-        gap: 10px;
+        // gap: 10px;
         justify-content: center;
+        gap: 180px;
       }
 
       .sec {
@@ -87,6 +91,75 @@ footer.footer {
               p {
                 margin: 0;
               }
+            }
+          }
+        }
+
+        .lang_dropdown {
+          position: relative;
+          width: 120px;
+
+          button {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            padding: 8px 12px;
+            font-size: 14px;
+            background: #f8f8f8;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            cursor: pointer;
+
+            &::after {
+              content: "\25BC";
+              margin-left: 8px;
+              font-size: 10px;
+            }
+          }
+          ul {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 100%;
+            max-height: 200px;
+            overflow-y: auto;
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            margin-top: 4px;
+            z-index: 10;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+
+            li {
+              padding: 8px 12px;
+
+              a {
+                display: block;
+                width: 100%;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+              }
+              &:hover {
+                background: #f0f0f0;
+              }
+            }
+          }
+        }
+
+        .social {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 12px;
+
+          a {
+            font-size: 20px;
+            color: #333;
+            transition: color 0.2s;
+
+            &:hover {
+              color: #0070f3;
             }
           }
         }

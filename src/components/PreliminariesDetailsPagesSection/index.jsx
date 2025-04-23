@@ -235,8 +235,8 @@ const PreliminariesDetailsPagesSection = ({ sectionData, dir, topicTitle, dataAl
             </div>
           </div>
           <div>
-            {renderChildrenContent(sectionData?.children)}
             {content && <div dangerouslySetInnerHTML={{ __html: processedContent }} />}
+            {renderChildrenContent(sectionData?.children)}
 
           </div>
         </div>

@@ -1,6 +1,7 @@
 import React from 'react';
 import styles from './index.module.scss';
 import Link from 'next/link';
+import Image from 'next/image';
 
 const HowTo2 = ({ dataPostWudoo, dir, dataPostPray }) => {
 
@@ -11,7 +12,7 @@ const HowTo2 = ({ dataPostWudoo, dir, dataPostPray }) => {
           <div className={styles.cards_container}>
             <Link href={`/preliminaries/${dataPostWudoo?.slug}`} className={styles.card}>
               <div className={styles.img_container}>
-                <img src="/assets/imgs/Wudoo.png" alt="" />
+                <Image width={372} height={231} src={dataPostWudoo.image} alt="" />
               </div>
               <div className={styles.title}>
                 <h4>{dataPostWudoo?.title}</h4>
@@ -19,7 +20,9 @@ const HowTo2 = ({ dataPostWudoo, dir, dataPostPray }) => {
             </Link>
 
             <Link href={`/preliminaries/${dataPostPray?.slug}`} className={styles.card}>
-
+              <div className={styles.img_container}>
+                <Image width={372} height={231} src={dataPostPray.image} alt="" />
+              </div>
               <div className={styles.title}>
                 <h4>{dataPostPray?.title}</h4>
               </div>

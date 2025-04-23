@@ -8,7 +8,7 @@ import { TfiWorld } from 'react-icons/tfi';
 import { motion } from 'framer-motion';
 
 
-const NavbarDetailsPages2 = ({ dir, dataAllLangs, stieName, dataPreliminaries, dataAllSections, dataAllSettings, slug, }) => {
+const NavbarDetailsPages2 = ({ dir, dataAllWords, dataAllLangs, stieName, dataPreliminaries, dataAllSections, dataAllSettings, slug, }) => {
   const { menulang, setMenuLang, topicsMenu, setTopicsMenu } = useMenu();
   const { locale } = useRouter();
   const [isSearchOpen, setIsSearchOpen] = useState(false);
@@ -209,8 +209,10 @@ const NavbarDetailsPages2 = ({ dir, dataAllLangs, stieName, dataPreliminaries, d
               <IoIosClose />
             </div>
           </div>
-
           <ul>
+            <Link href={'/preliminaries'}>
+              <h4>{dataAllWords?.preliminaries}</h4>
+            </Link>
             {dataPreliminaries?.posts?.map((box, index) => (
 
               <li className={`${styles.box_container} ${slug === box.slug && styles.active}`} key={index} onClick={() => setTopicsMenu(false)}>
@@ -220,15 +222,32 @@ const NavbarDetailsPages2 = ({ dir, dataAllLangs, stieName, dataPreliminaries, d
                   </div>
                   <p>{box?.title}</p>
                 </Link>
-
-
               </li>
+            ))}
 
 
+            <Link href={'/sections'}>
+              <h4>{dataAllWords?.sections}</h4>
+            </Link>
+
+            {dataAllSections?.map((box, index) => (
+
+              <li className={`${styles.box_container} ${slug === box.slug && styles.active}`} key={index} onClick={() => setTopicsMenu(false)}>
+                <Link href={`/section/${box.slug}`} className={`${styles.box} `}>
+                  <div className={styles.icon_container}>
+                    <img src={box.cover} alt={box.name} />
+                  </div>
+                  <p>{box?.name}</p>
+                </Link>
+              </li>
             ))}
           </ul>
+
+
+
         </motion.div>
       }
+
 
       {(menulang || topicsMenu || isSearchOpen) &&
         <div className={styles.layer} onClick={() => { setMenuLang(false), setTopicsMenu(false), setIsSearchOpen(false) }} />
