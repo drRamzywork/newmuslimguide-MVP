@@ -31,6 +31,9 @@ function MyApp({ Component, pageProps }) {
     dataAllSections,
     dataAllCategories,
     dataAllWords,
+    dataSettings,
+    dataTopicsSearch,
+    dataFirstTopic,
     ...restPageProps
   } = pageProps;
 
@@ -48,6 +51,9 @@ function MyApp({ Component, pageProps }) {
     dataAllWords,
     dir,
     locale,
+    dataSettings,
+    dataTopicsSearch,
+    dataFirstTopic,
   };
 
   return (
@@ -66,11 +72,13 @@ function MyApp({ Component, pageProps }) {
             dir={dir}
             dataAllLangs={dataAllLangs}
             stieName={dataAllSettings?.site_name}
+            dataTopicsSearch={dataTopicsSearch}
           />
 
           <Component {...restPageProps} />
 
           <Footer
+            dataSettings={dataSettings}
             dataPostPray={dataPostPray}
             dataPostWudoo={dataPostWudoo}
             dataAllLangs={dataAllLangs}
@@ -84,8 +92,8 @@ function MyApp({ Component, pageProps }) {
     </MenuProvider>
   );
 }
-
-MyApp.getInitialProps = async (appContext) => {
+//app.newmuslimguide.com/api/
+https: MyApp.getInitialProps = async (appContext) => {
   const apiDomain = process.env.NEXT_PUBLIC_API_DOMAIN;
   const locale = appContext.ctx.locale || "en";
 
@@ -111,6 +119,9 @@ MyApp.getInitialProps = async (appContext) => {
     dataAllSettings,
     dataAllCategories,
     dataAllWords,
+    dataSettings,
+    dataTopicsSearch,
+    dataFirstTopic,
   ] = await Promise.all([
     fetchData("/post/66f78a116963f"),
     fetchData("/post/670de63436400"),
@@ -120,6 +131,9 @@ MyApp.getInitialProps = async (appContext) => {
     fetchData("/items"),
     fetchData("/categories"),
     fetchData("/get-trans"),
+    fetchData("/settings"),
+    fetchData("/search"),
+    fetchData("/post/6410daa3a3554"),
   ]);
 
   const appProps = await App.getInitialProps(appContext);
@@ -136,6 +150,9 @@ MyApp.getInitialProps = async (appContext) => {
       dataAllSettings: dataAllSettings,
       dataAllCategories: dataAllCategories || [],
       dataAllWords: dataAllWords || [],
+      dataSettings: dataSettings || [],
+      dataTopicsSearch: dataTopicsSearch || [],
+      dataFirstTopic: dataFirstTopic || [],
     },
   };
 };

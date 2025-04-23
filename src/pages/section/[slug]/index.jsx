@@ -4,10 +4,12 @@ import Link from 'next/link';
 import NavbarDetailsPagesSections from '@/components/NavbarDetailsPagesSections';
 import Head from 'next/head';
 import { useSiteData } from '@/contexts/SiteDataContext';
+import { useRouter } from 'next/router';
 
 const Section = ({
   TopicDetails,
 }) => {
+  const { locale } = useRouter()
   const {
     dataAllSettings,
     dataAllLangs,
@@ -45,7 +47,7 @@ const Section = ({
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="csrf-token" content="JdDvDc4LUJomFM4T7QE0hFlH9CeKOHDXMoxV3wer" />
         <meta name="title" content="" />
-        <link rel="icon" type="image/png" href={`${siteURL}${imagePath}`} />
+        <link rel="icon" href={`${siteURL}${imagePath}`} />
         <meta name="theme-color" content={layerBg} />
         <meta name="mobile-web-app-capable" content="no" />
         <meta name="application-name" content={stieName} />
@@ -68,7 +70,7 @@ const Section = ({
         <meta property="og:site_name" content={stieName} />
         <meta property="og:locale" content="ar" />
         <meta property="og:locale:alternate" content="ar" />
-        <meta property="og:url" content={{ siteURL }} />
+        <meta property="og:url" content={siteURL} />
         <meta property="og:title" content={`${stieName} | ${topicTitle}`} />
         <meta property="og:description" content={plainText} />
         <meta property="og:image" content={topicCover} />
@@ -99,7 +101,7 @@ const Section = ({
             <div className="mobile">
               <div className={styles.boxes_container}>
                 {posts?.map((post, idx) =>
-                  <Link href={`/preliminaries/${post?.slug}`} target='_blank' className={styles.box} key={idx}>
+                  <Link locale={locale} href={`/preliminaries/${post?.slug}`} target='_blank' className={styles.box} key={idx}>
                     <div className={styles.img_container}>
                       <img src={post.image} alt="" />
                     </div>
@@ -115,7 +117,7 @@ const Section = ({
             <div className="desktop">
               <div className={styles.boxes_container2}>
                 {posts.map((box, idx) =>
-                  <Link href={`/preliminaries/${box.slug}`} className={styles.box} key={idx}>
+                  <Link locale={locale} href={`/preliminaries/${box.slug}`} className={styles.box} key={idx}>
                     <div className={styles.img_container}>
                       <img src={box.image} alt={box.title} />
                     </div>
@@ -147,8 +149,6 @@ const Section = ({
 
 export default Section;
 
-
-
 export async function getStaticProps({ params, locale }) {
   const apiDomain = process.env.NEXT_PUBLIC_API_DOMAIN;
   const { slug } = params;
@@ -171,7 +171,6 @@ export async function getStaticProps({ params, locale }) {
     revalidate: 10
   };
 }
-
 
 export async function getStaticPaths({ locale }) {
   const apiDomain = process.env.NEXT_PUBLIC_API_DOMAIN;

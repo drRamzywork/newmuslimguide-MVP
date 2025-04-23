@@ -58,8 +58,6 @@ export async function getStaticProps({ params, locale }) {
   });
   const dataAllSections = await resCategories.json();
 
-
-  // Get the post data by ID (similar to how it was done in v1)
   const resPost = await fetch(`${apiDomain}/post/${id}`, {
     headers: { "locale": locale },
   });
