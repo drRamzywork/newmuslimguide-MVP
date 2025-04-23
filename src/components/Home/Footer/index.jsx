@@ -179,6 +179,7 @@ const Footer = ({
   dataAllCategories,
   dataAllSettings,
   dir,
+  dataPreliminaries,
   dataAllWords,
   dataSettings
 }) => {
@@ -244,29 +245,6 @@ const Footer = ({
           <div className="container">
             <div className={styles.sec_container}>
 
-              {/* Sections */}
-              <div className={styles.sec}>
-                <div className={styles.sec_title}>
-                  <h5>{dataAllWords?.sections || 'Sections'}</h5>
-                </div>
-                <ul>
-                  {dataAllCategories?.map((sec, idx) => (
-                    <li key={idx}>
-                      <Link
-                        href={
-                          sec.slug === 'preliminaries'
-                            ? '/preliminaries'
-                            : `/section/${sec.slug}`
-                        }
-                      >
-                        <p>{sec.name}</p>
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              {/* Languages Dropdown */}
               <div className={styles.sec} ref={langRef}>
                 <div className={styles.sec_title}>
                   <h5>{dataAllWords?.languages || 'Languages'}</h5>
@@ -292,7 +270,6 @@ const Footer = ({
                 </div>
               </div>
 
-              {/* Social & Contact */}
               <div className={styles.sec}>
                 <div className={styles.sec_title}>
                   <h5>{dataAllWords?.contact || 'Contact Us'}</h5>
@@ -343,6 +320,49 @@ const Footer = ({
 
                 </div>
               </div>
+              {/* Sections */}
+              <div className={styles.sec}>
+                <div className={styles.sec_title}>
+                  <h5>{dataAllWords?.sections || 'Sections'}</h5>
+                </div>
+                <ul>
+                  {dataAllCategories?.map((sec, idx) => (
+                    <li key={idx}>
+                      <Link
+                        href={
+                          sec.slug === 'preliminaries'
+                            ? '/preliminaries'
+                            : `/section/${sec.slug}`
+                        }
+                      >
+                        <p>{sec.name}</p>
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              {/* Sections */}
+              <div className={styles.sec}>
+                <div className={styles.sec_title}>
+                  <h5>{dataAllWords?.preliminaries || 'Sections'}</h5>
+                </div>
+                <ul>
+                  {dataPreliminaries?.posts?.map((sec, idx) => (
+                    <li key={idx}>
+                      <Link
+                        href={
+                          sec.slug === 'preliminaries'
+                            ? '/preliminaries'
+                            : `/section/${sec.slug}`
+                        }
+                      >
+                        <p>{sec.title}</p>
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
 
             </div>
           </div>

@@ -62,6 +62,13 @@ footer.footer {
         gap: 180px;
       }
 
+      @media screen and (max-width: 992px) {
+        flex-wrap: wrap;
+        justify-content: space-evenly; // لتوزيع العناصر بشكل متساوٍ
+        align-items: flex-start;
+        gap: 20px; // تقليل المسافة بين العناصر
+      }
+
       .sec {
         .sec_title {
           text-decoration: none;

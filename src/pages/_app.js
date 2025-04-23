@@ -81,6 +81,7 @@ function MyApp({ Component, pageProps }) {
           <Component {...restPageProps} />
 
           <Footer
+            dataPreliminaries={dataPreliminaries}
             dataSettings={dataSettings}
             dataPostPray={dataPostPray}
             dataPostWudoo={dataPostWudoo}
