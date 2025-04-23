@@ -61,6 +61,32 @@ section.how_to {
             object-fit: cover;
             opacity: 0.9;
           }
+
+          &::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 37%;
+            border-radius: 26px;
+            z-index: 1;
+            animation: pulse 6s ease-in-out infinite;
+          }
+
+          &::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 40%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.2);
+            transform: skewX(-25deg);
+            animation: shimmer 4s infinite;
+            border-radius: 26px;
+            z-index: 2;
+          }
         }
 
         .icon_container {
@@ -85,6 +111,22 @@ section.how_to {
             line-height: 34px;
           }
         }
+      }
+
+      .card:nth-child(1) .img_container::before {
+        background: linear-gradient(
+          to bottom,
+          rgba(0, 123, 255, 0.7) 0%,
+          transparent 100%
+        );
+      }
+
+      .card:nth-child(2) .img_container::before {
+        background: linear-gradient(
+          to bottom,
+          rgba(40, 167, 69, 0.7) 0%,
+          transparent 100%
+        );
       }
     }
   }
