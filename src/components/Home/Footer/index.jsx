@@ -331,22 +331,10 @@ const Footer = ({
 
                   {dataSettings?.email && (
                     <>
-                      {/* mailto link (opens default client, if available) */}
                       <a
                         href={`mailto:${dataSettings.email}`}
                         title={`Send email to ${dataSettings.email}`}
                         style={{ marginRight: '10px', fontSize: '1.5em' }}
-                      >
-                        <IoMdMail />
-                      </a>
-
-                      {/* fallback Gmail compose link */}
-                      <a
-                        href={`https://mail.google.com/mail/?view=cm&fs=1&to=${dataSettings.email}`}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        title="Open Gmail to send email"
-                        style={{ fontSize: '1.5em' }}
                       >
                         <IoMdMail />
                       </a>
