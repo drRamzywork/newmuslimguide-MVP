@@ -280,6 +280,16 @@ footer.footer {
 }
 footer.footer[dir="rtl"] {
   .links_container {
+    .bottom {
+      .copy {
+        margin-top: 24px;
+        padding-bottom: 20px;
+        position: relative;
+        &::after {
+          transform: translateX(50%);
+        }
+      }
+    }
     .sec_container {
       .sec {
         .sec_title {
