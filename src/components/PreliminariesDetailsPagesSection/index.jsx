@@ -33,19 +33,6 @@ const PreliminariesDetailsPagesSection = ({ sectionData, parent_name, parent_slu
 
 
   const sectionRef = useRef(null);
-  // useEffect(() => {
-  //   if (sectionData?.body) {
-  //     console.log("Original Section Data:", sectionData.body);
-
-  //     const cleanedContent = removeDarkClasses(sectionData.body);
-
-  //     console.log("Cleaned Content Before State Update:", cleanedContent);
-
-  //     setContent(cleanedContent);
-  //   }
-  // }, [sectionData]);
-  // console.log(content, "cleanedContent")
-
 
   useEffect(() => {
     if (typeof window !== "undefined" && sectionData?.body) {
