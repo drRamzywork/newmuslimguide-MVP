@@ -118,7 +118,7 @@ import styles from '@/components/Home/Hero/index.module.scss';
 import { useSiteData } from "@/contexts/SiteDataContext";
 
 const SearchBox = () => {
-  const { dataPreliminaries, dataAllSections, dataTopicsSearch } = useSiteData();
+  const { dataPreliminaries, dataAllSections, dataTopicsSearch, dataAllWords } = useSiteData();
   const [searchTerm, setSearchTerm] = useState("");
   const wrapperRef = useRef(null);
 
@@ -179,7 +179,7 @@ const SearchBox = () => {
     >
       <input
         type="text"
-        placeholder="Search..."
+        placeholder={dataAllWords?.search}
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
         className={styles.search_input}

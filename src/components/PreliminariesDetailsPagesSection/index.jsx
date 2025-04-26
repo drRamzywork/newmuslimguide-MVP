@@ -26,7 +26,7 @@ function removeDarkClasses(htmlContent) {
 }
 
 
-const PreliminariesDetailsPagesSection = ({ sectionData, dir, topicTitle, dataAllWords
+const PreliminariesDetailsPagesSection = ({ sectionData, parent_name, parent_slug, dir, topicTitle, dataAllWords
   , main_color, sec_color }) => {
   const [content, setContent] = useState('');
   const [cleanedChildren, setCleanedChildren] = useState([]); // Use an array instead of an empty string
@@ -114,55 +114,6 @@ const PreliminariesDetailsPagesSection = ({ sectionData, dir, topicTitle, dataAl
     };
   }, [content]);
 
-  // const renderChildrenContent = (children) => {
-  //   console.log(children, 'children')
-  //   return children?.map((child, index) => (
-  //     child.body ? (
-  //       <div key={index}>
-  //         <h2
-  //           id={child.slug}
-  //           className="text-3xl w-full  leading-[50px] text-gray-50 bg-main-color p-4 lg:text-3xl dark:text-white custom-border-radius"
-  //           style={{ color: main_color }}
-
-  //         >
-
-  //           {child.title}
-  //         </h2>
-  //         <div
-  //           className={styles.childContent}
-  //           dangerouslySetInnerHTML={{ __html: removeDarkClasses(child.body) }}
-  //         />
-  //       </div>
-  //     ) : null
-  //   ));
-  // };
-  // const renderChildrenContent = () => {
-  //   return sectionData?.children?.map((child, index) => {
-
-  //     const processedContent2 = child.body
-  //       ? sectionData.body.replace(
-  //         /class="([^"]*?)bg-gradient-to-br from-main-color to-h-color([^"]*?)"/g,
-  //         `class="$1" style="background: linear-gradient(to bottom right, ${main_color}, ${sec_color}); --tw-gradient-to-position: 100%"$2"`
-  //       )
-  //       : "";
-
-  //     child.body ? (
-  //       <div key={index}>
-  //         <h2
-  //           id={child.slug}
-  //           className="text-3xl w-full  leading-[50px] text-gray-50 bg-main-color p-4 lg:text-3xl dark:text-white custom-border-radius"
-  //           style={{ color: main_color }}
-  //         >
-  //           {child.title}
-  //         </h2>
-  //         <div
-  //           className={styles.childContent}
-  //           dangerouslySetInnerHTML={{ __html: processedContent2 }}
-  //         />
-  //       </div>
-  //     ) : null
-  //   });
-  // };
 
 
   const renderChildrenContent = () => {
@@ -193,10 +144,7 @@ const PreliminariesDetailsPagesSection = ({ sectionData, dir, topicTitle, dataAl
   };
 
 
-  // const processedContent = sectionData.body?.replace(
-  //   /class="([^"]*?)bg-gradient-to-br from-main-color to-h-color([^"]*?)"/g,
-  //   `class="$1" style="background: linear-gradient(to bottom right, ${main_color || "#ff5733"}, ${sec_color || "#3399ff"})"$2"`
-  // );
+
 
   const processedContent = sectionData.body
     ? sectionData.body.replace(
@@ -224,8 +172,8 @@ const PreliminariesDetailsPagesSection = ({ sectionData, dir, topicTitle, dataAl
                   <span>{dataAllWords?.sections}</span>
                 </Link>
                 <IoIosArrowForward />
-                <Link href={'/preliminaries'} className={styles.icon_container}>
-                  <span>{dataAllWords?.preliminaries}</span>
+                <Link href={`/section/${parent_slug}`} className={styles.icon_container}>
+                  <span>{parent_name}</span>
                 </Link>
                 <IoIosArrowForward />
                 <Link href={'#'} className={styles.icon_container}>

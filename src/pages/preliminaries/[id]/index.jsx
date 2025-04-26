@@ -111,6 +111,8 @@ const Preliminar = ({
 
   const main_color = sectionData.category.main_color;
   const sec_color = sectionData.category.second_color || '#000000';
+  const parent_name = sectionData.category?.name || '';
+  const parent_slug = sectionData.category?.slug || '';
 
 
   return (
@@ -173,6 +175,8 @@ const Preliminar = ({
       />
       <PreliminariesDetailsPagesSection
         sec_color={sec_color}
+        parent_slug={parent_slug}
+        parent_name={parent_name}
         sectionData={sectionData} dir={dir} main_color={main_color} topicTitle={topicTitle} dataAllWords={dataAllWords} />
 
 

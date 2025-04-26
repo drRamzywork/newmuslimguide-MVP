@@ -11,9 +11,8 @@ import Image from 'next/image';
 
 const NavbarDetailsPages2 = ({ dataAllBooks, dir, dataAllWords, dataAllLangs, stieName, dataPreliminaries, dataAllSections, slug, }) => {
   const { menulang, setMenuLang, topicsMenu, setTopicsMenu, booksMenu,
-    setBooksMenu } = useMenu();
+    setBooksMenu, isSearchOpen, setIsSearchOpen } = useMenu();
   const { locale } = useRouter();
-  const [isSearchOpen, setIsSearchOpen] = useState(false);
   const router = useRouter()
   const searchRef = useRef(null);
   const [searchTerm, setSearchTerm] = useState("");
@@ -121,7 +120,7 @@ const NavbarDetailsPages2 = ({ dataAllBooks, dir, dataAllWords, dataAllLangs, st
               >
                 <input
                   type="text"
-                  placeholder="Search..."
+                  placeholder={dataAllWords?.search}
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
                   className={styles.search_input}
@@ -262,7 +261,7 @@ const NavbarDetailsPages2 = ({ dataAllBooks, dir, dataAllWords, dataAllLangs, st
           </div>
           <ul>
             <Link href={'#'}>
-              <h4>Books</h4>
+              <h4>{dataAllWords?.books}</h4>
             </Link>
             <div className={styles.books_container} >
               {dataAllBooks?.map((book, index) => (

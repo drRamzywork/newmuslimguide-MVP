@@ -66,6 +66,7 @@ function MyApp({ Component, pageProps }) {
           className={`App-${locale} text-black bg-white`}
         >
           <NavbarDetailsPages2
+            dataAllWords={dataAllWords}
             slug={"slug"}
             dataAllBooks={dataAllBooks}
             dataAllSections={dataAllSections}
@@ -159,7 +160,7 @@ https: MyApp.getInitialProps = async (appContext) => {
       dataSettings: dataSettings || [],
       dataTopicsSearch: dataTopicsSearch || [],
       dataFirstTopic: dataFirstTopic || [],
-      dataAllBooks: dataAllBooks || [],
+      dataAllBooks: dataAllBooks.data || [],
     },
   };
 };

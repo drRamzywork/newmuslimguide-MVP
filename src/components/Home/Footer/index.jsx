@@ -171,18 +171,19 @@ import {
   FaPhone
 } from 'react-icons/fa';
 import { IoMdMail } from 'react-icons/io';
+import { useMenu } from '@/contexts/MenuContext';
 
 const Footer = ({
   dataPostWudoo,
   dataPostPray,
   dataAllLangs,
-  dataAllCategories,
   dataAllSettings,
   dir,
-  dataPreliminaries,
   dataAllWords,
   dataSettings
 }) => {
+  const { menulang, setMenuLang, topicsMenu, setTopicsMenu, booksMenu,
+    setBooksMenu, isSearchOpen, setIsSearchOpen } = useMenu();
   const router = useRouter();
   const currentLocale = router.locale || 'ar';
   const currentLang = dataAllLangs[currentLocale]?.native;
@@ -245,35 +246,34 @@ const Footer = ({
           <div className="container">
             <div className={styles.sec_container}>
 
-              <div className={styles.sec} ref={langRef}>
-                <div className={styles.sec_title}>
-                  <h5>{dataAllWords?.languages || 'Languages'}</h5>
-                </div>
-                <div className={styles.lang_dropdown}>
-                  <button
-                    type="button"
-                    onClick={() => setLangOpen(prev => !prev)}
-                  >
-                    {currentLang}
-                  </button>
-                  {langOpen && (
-                    <ul>
-                      {Object.entries(dataAllLangs).map(([code, language]) => (
-                        <li key={code}>
-                          <Link href={router.asPath} locale={code}>
-                            {language.native}
-                          </Link>
-                        </li>
-                      ))}
-                    </ul>
-                  )}
-                </div>
-              </div>
 
-              <div className={styles.sec}>
+
+              {/*Sections */}
+              <Link href={'/sections'} className={styles.sec}>
                 <div className={styles.sec_title}>
-                  <h5>{dataAllWords?.contact || 'Contact Us'}</h5>
+                  <h5>{dataAllWords?.sections || 'Sections'}</h5>
                 </div>
+
+              </Link>
+
+              {/*Preliminaries */}
+              <Link href={'/preliminaries'} className={styles.sec}>
+                <div className={styles.sec_title}>
+                  <h5>{dataAllWords?.preliminaries || 'Sections'}</h5>
+                </div>
+
+              </Link>
+
+
+              {/* Contact us */}
+              <div className={`${styles.sec} ${styles.contact}`}>
+                <div className={styles.sec_title}>
+                  <h5>{dataAllWords?.contact_us || 'Contact Us'}</h5>
+                </div>
+
+
+
+
                 <div className={styles.social}>
                   {socialPlatforms.map(({ key, Icon }) => {
                     const url = dataSettings?.[key];
@@ -299,11 +299,7 @@ const Footer = ({
                       <FaPhone />
                     </a>
                   )}
-                  {/* {dataSettings?.email && (
-                    <a href={`mailto:${dataSettings.email}`} title="Send email">
-                      <IoMdMail />
-                    </a>
-                  )} */}
+
 
 
                   {dataSettings?.email && (
@@ -319,52 +315,42 @@ const Footer = ({
                   )}
 
                 </div>
+
               </div>
-              {/* Sections */}
-              <div className={styles.sec}>
+
+              {/* Langs */}
+              <div className={`${styles.sec} ${styles.cursor}`} onClick={() => setIsSearchOpen(true)}>
                 <div className={styles.sec_title}>
-                  <h5>{dataAllWords?.sections || 'Sections'}</h5>
+                  <h5>{dataAllWords?.languages || 'Languages'}</h5>
                 </div>
-                <ul>
-                  {dataAllCategories?.map((sec, idx) => (
-                    <li key={idx}>
-                      <Link
-                        href={
-                          sec.slug === 'preliminaries'
-                            ? '/preliminaries'
-                            : `/section/${sec.slug}`
-                        }
-                      >
-                        <p>{sec.name}</p>
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
               </div>
-              {/* Sections */}
-              <div className={styles.sec}>
+
+              {/* Store */}
+              <Link href={'/preliminaries'} className={styles.sec}>
                 <div className={styles.sec_title}>
-                  <h5>{dataAllWords?.preliminaries || 'Sections'}</h5>
+                  <h5>{dataAllWords?.store || 'Store'}</h5>
                 </div>
-                <ul>
-                  {dataPreliminaries?.posts?.map((sec, idx) => (
-                    <li key={idx}>
-                      <Link
-                        href={
-                          sec.slug === 'preliminaries'
-                            ? '/preliminaries'
-                            : `/section/${sec.slug}`
-                        }
-                      >
-                        <p>{sec.title}</p>
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              </div>
+
+              </Link>
 
 
             </div>
+
+
+
+
+
+            <div className={styles.bottom}>
+              <p>
+                {dataAllWords.footer_desc1}
+              </p>
+
+
+              <div className={styles.copy}>
+                <p>{dataAllWords?.footer_desc2} {dataAllSettings?.site_name} @2025</p>
+              </div>
+            </div>
+
           </div>
         </div>
       </footer>
@@ -373,3 +359,117 @@ const Footer = ({
 };
 
 export default Footer;
+{/* <div className={styles.sec_container}>
+
+<div className={styles.sec} ref={langRef}>
+  <div className={styles.sec_title}>
+    <h5>{dataAllWords?.languages || 'Languages'}</h5>
+  </div>
+  <div className={styles.lang_dropdown}>
+    <button
+      type="button"
+      onClick={() => setLangOpen(prev => !prev)}
+    >
+      {currentLang}
+    </button>
+    {langOpen && (
+      <ul>
+        {Object.entries(dataAllLangs).map(([code, language]) => (
+          <li key={code}>
+            <Link href={router.asPath} locale={code}>
+              {language.native}
+            </Link>
+          </li>
+        ))}
+      </ul>
+    )}
+  </div>
+</div>
+
+<div className={styles.sec}>
+  <div className={styles.sec_title}>
+    <h5>{dataAllWords?.contact || 'Contact Us'}</h5>
+  </div>
+  <div className={styles.social}>
+    {socialPlatforms.map(({ key, Icon }) => {
+      const url = dataSettings?.[key];
+      if (!url) return null;
+      return (
+        <a
+          key={key}
+          href={url}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <Icon />
+        </a>
+      );
+    })}
+    {dataSettings?.phone && (
+      <a href={`tel:${dataSettings.phone}`}>
+        <FaPhone />
+      </a>
+    )}
+    {dataSettings?.phone2 && (
+      <a href={`tel:${dataSettings.phone2}`}>
+        <FaPhone />
+      </a>
+    )}
+
+    {dataSettings?.email && (
+      <>
+        <a
+          href={`mailto:${dataSettings.email}`}
+          title={`Send email to ${dataSettings.email}`}
+          style={{ marginRight: '10px', fontSize: '1.5em' }}
+        >
+          <IoMdMail />
+        </a>
+      </>
+    )}
+
+  </div>
+</div>
+<div className={styles.sec}>
+  <div className={styles.sec_title}>
+    <h5>{dataAllWords?.sections || 'Sections'}</h5>
+  </div>
+  <ul>
+    {dataAllCategories?.map((sec, idx) => (
+      <li key={idx}>
+        <Link
+          href={
+            sec.slug === 'preliminaries'
+              ? '/preliminaries'
+              : `/section/${sec.slug}`
+          }
+        >
+          <p>{sec.name}</p>
+        </Link>
+      </li>
+    ))}
+  </ul>
+</div>
+<div className={styles.sec}>
+  <div className={styles.sec_title}>
+    <h5>{dataAllWords?.preliminaries || 'Sections'}</h5>
+  </div>
+  <ul>
+    {dataPreliminaries?.posts?.map((sec, idx) => (
+      <li key={idx}>
+        <Link
+          href={
+            sec.slug === 'preliminaries'
+              ? '/preliminaries'
+              : `/section/${sec.slug}`
+          }
+        >
+          <p>{sec.title}</p>
+        </Link>
+      </li>
+    ))}
+  </ul>
+</div>
+
+
+</div> */}
