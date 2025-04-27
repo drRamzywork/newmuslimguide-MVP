@@ -67,6 +67,24 @@ const Hero = ({ dataPreliminaries, dir, dataAllWords, dataFirstTopic }) => {
                     className={`${styles.img_4} `} src="/assets/imgs/img_4.png" alt="" />
                 </div>
               </SwiperSlide>
+
+
+
+
+
+
+              <SwiperSlide>
+                <div className={styles.img_container}>
+                  <motion.img initial={{ opacity: 0, scale: 1.1, x: 0 }}
+                    whileInView={{ opacity: 1, scale: 1.1, x: 20 }}
+                    className={`${styles.img_3} `} src="/assets/imgs/img_5.png" alt="" />
+
+                  <motion.img
+                    initial={{ opacity: 0, scale: 0.9, x: 0, }}
+                    whileInView={{ opacity: 1, scale: 0.9, x: -20, }}
+                    className={`${styles.img_4} `} src="/assets/imgs/img_6  .png" alt="" />
+                </div>
+              </SwiperSlide>
             </Swiper>
 
             <div className={styles.text_container}>
