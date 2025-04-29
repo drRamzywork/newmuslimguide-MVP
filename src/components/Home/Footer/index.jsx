@@ -26,7 +26,7 @@ const Footer = ({
   dataAllWords,
   dataSettings
 }) => {
-  const { setIsSearchOpen } = useMenu();
+  const { setMenuLang } = useMenu();
   const router = useRouter();
   const currentLocale = router.locale || 'ar';
 
@@ -42,7 +42,6 @@ const Footer = ({
   };
 
 
-  // Social platforms mapping
   const socialPlatforms = [
     { key: 'link_facebook', Icon: FaFacebook },
     { key: 'link_twitter', Icon: FaTwitter },
@@ -67,6 +66,7 @@ const Footer = ({
       </div>
 
       <footer id="footer" className={styles.footer} dir={dir}>
+
         <div className={styles.logo_container}>
           <div className="container">
             <div className={styles.logo}>
@@ -152,7 +152,7 @@ const Footer = ({
               </div>
 
               {/* Langs */}
-              <div className={`${styles.sec} ${styles.cursor}`} onClick={() => setIsSearchOpen(true)}>
+              <div className={`${styles.sec} ${styles.cursor}`} onClick={() => setMenuLang(true)}>
                 <div className={styles.sec_title}>
                   <h5>{dataAllWords?.languages || 'Languages'}</h5>
                 </div>
@@ -173,11 +173,12 @@ const Footer = ({
               </p>
 
               <div className={styles.copy}>
-                <p>{dataAllWords?.h_title2} @{formatYear(year, currentLocale)}</p>
+                <p>{dataAllWords?.footer_desc2} @{formatYear(year, currentLocale)}</p>
               </div>
             </div>
           </div>
         </div>
+
       </footer>
     </>
   );

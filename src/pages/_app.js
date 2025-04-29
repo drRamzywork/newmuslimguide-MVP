@@ -98,7 +98,7 @@ function MyApp({ Component, pageProps }) {
   );
 }
 //app.newmuslimguide.com/api/
-https: MyApp.getInitialProps = async (appContext) => {
+ MyApp.getInitialProps = async (appContext) => {
   const apiDomain = process.env.NEXT_PUBLIC_API_DOMAIN;
   const locale = appContext.ctx.locale || "en";
 
@@ -160,7 +160,7 @@ https: MyApp.getInitialProps = async (appContext) => {
       dataSettings: dataSettings || [],
       dataTopicsSearch: dataTopicsSearch || [],
       dataFirstTopic: dataFirstTopic || [],
-      dataAllBooks: dataAllBooks.data || [],
+      dataAllBooks: dataAllBooks || [],
     },
   };
 };

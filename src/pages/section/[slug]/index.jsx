@@ -22,7 +22,6 @@ const Section = ({
 
 
   const topicTitle = TopicDetails?.name;
-
   const layerBg = TopicDetails?.main_color;
   const imgLayer = TopicDetails?.cover;
   const topicDesc = TopicDetails?.seo_description
@@ -40,7 +39,6 @@ const Section = ({
 
   return (
     <>
-
       <Head>
         <title>{`${stieName} | ${topicTitle}`}</title>
         <meta charSet="UTF-8" />
@@ -93,6 +91,7 @@ const Section = ({
         <div className={styles.sec_container}>
 
           <div className="container">
+
             <div className={styles.desc}>
               <p>{plainText}</p>
             </div>
@@ -138,6 +137,7 @@ const Section = ({
                 )}
               </div>
             </div>
+
           </div>
         </div>
       </section>

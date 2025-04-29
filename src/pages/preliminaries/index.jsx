@@ -21,7 +21,6 @@ const Preliminaries = () => {
   const { menulang, setMenuLang, } = useMenu();
   const dir = dataAllSettings?.dir;
 
-
   const imagePath = '/logo.png';
   const siteURL = process.env.NEXT_PUBLIC_APP_DOMAIN;
   const stieName = dataAllSettings?.site_name;

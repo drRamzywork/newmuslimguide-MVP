@@ -111,7 +111,7 @@ const NavbarDetailsPages2 = ({ dataAllBooks, dir, dataAllWords, dataAllLangs, st
               <IoIosClose />
             </div>
 
-            <div className={styles.langs}>
+            <div className={styles.regionals}>
               <motion.div
                 initial={{ scale: 0.8, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
@@ -176,7 +176,7 @@ const NavbarDetailsPages2 = ({ dataAllBooks, dir, dataAllWords, dataAllLangs, st
               <IoIosClose />
             </div>
 
-            <div className={styles.langs}>
+            <div className={styles.regionals}>
               <TfiWorld />
 
             </div>
@@ -263,24 +263,23 @@ const NavbarDetailsPages2 = ({ dataAllBooks, dir, dataAllWords, dataAllLangs, st
             <Link href={'#'}>
               <h4>{dataAllWords?.books}</h4>
             </Link>
-            <div className={styles.books_container} >
-              {dataAllBooks?.map((book, index) => (
-                <div className={`${styles.book} ${book.lang === locale && styles.active}`} key={index}>
-                  {console.log(locale, book.lang, "locale")}
-
+            {console.log(dataAllBooks, "dataAllBooks")}
+            <div className={styles.books_container} dir={'ltr'}>
+              {/* {dataAllBooks?.map((book, index) => (
+                <div className={`${styles.book} ${book.regional === locale && styles.active}`} key={index}>
                   <div className={styles.img_container}>
-                    <Image src={book.image} alt='' width={87.38} height={125.82} />
+                    <Image src={book.image} alt={book.book_title} width={87.38} height={125.82} />
                   </div>
 
                   <div className={styles.text_container}>
-                    <div className={styles.lang}>
+                    <div className={styles.regional}>
                       <div className={styles.icon_container}>
                         <Image src={'/assets/svgs/langs.svg'} alt='' width={12} height={12} />
                       </div>
-                      <p>{locale}</p>
+                      <p>{book.native}</p>
                     </div>
                     <div className={styles.title}>
-                      <h3>{book.title}</h3>
+                      <h3>{book.book_title}</h3>
                     </div>
 
                     <div className={styles.info}>
@@ -305,16 +304,103 @@ const NavbarDetailsPages2 = ({ dataAllBooks, dir, dataAllWords, dataAllLangs, st
                       <p><strong>Edition: </strong> {book.edition}</p>
                     </div>
 
-                    <Link target={'_blank'} href={book.pdf_link}
-                      className={styles.btn_container}>
-                      <button>
-                        PDF
-                      </button>
+                    <div className={styles.btns_container}>
+
+                      <Link target={'_blank'} href={book.pdf_link}
+                        className={styles.btn_container}>
+                        <button>
+                          PDF
+                        </button>
+                        <div className={styles.icon_container}>
+                          <Image src={'/assets/svgs/pdf.svg'} alt='' width={20} height={20} />
+                        </div>
+
+                      </Link>
+                      <Link target={'_blank'} href={book.pdf_link}
+                        className={styles.btn_container}>
+                        <button>
+                          PDF
+                        </button>
+                        <div className={styles.icon_container}>
+                          <Image src={'/assets/svgs/pdf.svg'} alt='' width={20} height={20} />
+                        </div>
+
+                      </Link>
+                    </div>
+                  </div>
+                </div>
+              ))} */}
+
+              {dataAllBooks?.sort((a, b) => {
+                // Extract language codes from 'a.regional' and 'b.regional'
+                const languageCodeA = a.regional.split('_')[0];  // "ar"
+                const languageCodeB = b.regional.split('_')[0];  // "ar"
+
+                // Check if 'a.regional' or 'b.regional' matches the current locale
+                if (languageCodeA === locale) return -1;  // If 'a.regional' matches, it should come first
+                if (languageCodeB === locale) return 1;   // If 'b.regional' matches, it should come first
+                return 0;  // No change if neither match
+              }).map((book, index) => (
+                <div className={`${styles.book} ${book.regional.split('_')[0] === locale && styles.active}`} key={index}>
+                  <div className={styles.img_container}>
+                    <Image src={book.image} alt={book.book_title} width={87.38} height={125.82} />
+                  </div>
+
+                  <div className={styles.text_container}>
+                    <div className={styles.lang}>
                       <div className={styles.icon_container}>
-                        <Image src={'/assets/svgs/pdf.svg'} alt='' width={20} height={20} />
+                        <Image src={'/assets/svgs/langs.svg'} alt='' width={12} height={12} />
+                      </div>
+                      <p>{book.native}</p>
+                    </div>
+                    <div className={styles.title}>
+                      <h3>{book.book_title}</h3>
+                    </div>
+
+                    <div className={styles.info}>
+                      <div className={styles.size}>
+                        <div className={styles.icon_container}>
+                          <Image src={'/assets/svgs/size.svg'} alt='' width={12} height={12} />
+                        </div>
+                        <p>{book.size}</p>
                       </div>
 
-                    </Link>
+                      <div className={styles.pages}>
+                        <div className={styles.icon_container}>
+                          <Image src={'/assets/svgs/pages.svg'} alt='' width={12} height={12} />
+                        </div>
+                        <p>{book.pages}</p>
+                      </div>
+                    </div>
+                    <div className={styles.nums}>
+                      <p><strong>ISBN: </strong> {book.isbn}</p>
+                      <p><strong>Edition: </strong> {book.edition}</p>
+                    </div>
+
+                    <div className={styles.btns_container}>
+                      {book.pdf_link &&
+                        <Link target={'_blank'} href={book.pdf_link} className={styles.btn_container}>
+                          <button>
+                            PDF
+                          </button>
+                          <div className={styles.icon_container}>
+                            <Image src={'/assets/svgs/pdf.svg'} alt='' width={20} height={20} />
+                          </div>
+                        </Link>
+                      }
+
+                      {book.mp3_link &&
+                        <Link target={'_blank'} href={book.mp3_link} className={`${styles.btn_container} ${styles.mp3}`}>
+                          <button>
+                            mp3
+                          </button>
+                          <div className={styles.icon_container}>
+                            <Image src={'/assets/svgs/mp3.svg'} alt='' width={20} height={20} />
+                          </div>
+                        </Link>
+                      }
+
+                    </div>
                   </div>
                 </div>
               ))}

@@ -1,0 +1,17 @@
+[
+  {
+    "bookName": "اسم الكتاب",
+    "img": ".../src",
+    "Book_Locale_code": "ar",
+    "Book_NativeLang": "العربية",
+    "book_link": "https:///"
+  },
+
+  {
+    "bookName": "Book Name",
+    "img": ".../src",
+    "Book_Locale_code": "en",
+    "Book_NativeLang": "English",
+    "book_link": "https:///"
+  }
+]
