@@ -89,7 +89,6 @@ const Footer = ({
                 </div>
 
               </Link>
-
               {/*Preliminaries */}
               <Link href={'/preliminaries'} className={styles.sec}>
                 <div className={styles.sec_title}>
@@ -97,7 +96,6 @@ const Footer = ({
                 </div>
 
               </Link>
-
               {/* Contact us */}
               <div className={`${styles.sec} ${styles.contact}`}>
                 <div className={styles.sec_title}>
@@ -150,14 +148,12 @@ const Footer = ({
                 </div>
 
               </div>
-
               {/* Langs */}
               <div className={`${styles.sec} ${styles.cursor}`} onClick={() => setMenuLang(true)}>
                 <div className={styles.sec_title}>
                   <h5>{dataAllWords?.languages || 'Languages'}</h5>
                 </div>
               </div>
-
               {/* Store */}
               <Link href={'/preliminaries'} className={styles.sec}>
                 <div className={styles.sec_title}>
@@ -173,7 +169,7 @@ const Footer = ({
               </p>
 
               <div className={styles.copy}>
-                <p>{dataAllWords?.footer_desc2} @{formatYear(year, currentLocale)}</p>
+                <p>{dataAllWords?.footer_desc2} {formatYear(year, currentLocale)}</p>
               </div>
             </div>
           </div>
