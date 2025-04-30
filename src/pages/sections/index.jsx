@@ -86,7 +86,7 @@ const Sections = () => {
             </div>
 
             <div className={styles.boxes_container}>
-
+              {/* 
               {test?.map((post, idx) => (
                 <a key={idx} href={`/section/${post.slug}`} className={styles.box}>
                   <div className={styles.img_container}>
@@ -103,9 +103,31 @@ const Sections = () => {
                     <p>{post.name}</p>
                   </motion.div>
                 </a>
+              ))} */}
+
+
+
+              {test?.map((post, idx) => (
+                <a
+                  key={idx}
+                  href={`/${menulang || 'en'}/section/${post.slug}`}  // Include current locale (menulang) in the URL
+                  className={styles.box}
+                >
+                  <div className={styles.img_container}>
+                    <img src={post.cover} alt={post?.name} />
+                  </div>
+
+                  <motion.div
+                    initial={{ opacity: 0, y: 50 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 1 }}
+                    transition={{ duration: 0.5 }}
+                    className={styles.title}
+                  >
+                    <p>{post.name}</p>
+                  </motion.div>
+                </a>
               ))}
-
-
 
             </div>
           </div>

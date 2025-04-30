@@ -55,6 +55,19 @@ const Hero = ({ dataPreliminaries, dir, dataAllWords, dataFirstTopic }) => {
 
               </SwiperSlide>
 
+
+              <SwiperSlide>
+                <div className={`${styles.img_container} ${styles.img_container2}`}>
+                  <motion.img initial={{ opacity: 0, scale: 1.1, x: 0 }}
+                    whileInView={{ opacity: 1, scale: 1.1, x: 20 }}
+                    className={`${styles.img_5} `} src="/assets/imgs/img_5.png" alt="" />
+
+                  <motion.img
+                    initial={{ opacity: 0, scale: 0.9, x: 0, }}
+                    whileInView={{ opacity: 1, scale: 0.9, x: -20, }}
+                    className={`${styles.img_6} `} src="/assets/imgs/img_6.png" alt="" />
+                </div>
+              </SwiperSlide>
               <SwiperSlide>
                 <div className={styles.img_container}>
                   <motion.img initial={{ opacity: 0, scale: 1.1, x: 0 }}
@@ -69,22 +82,6 @@ const Hero = ({ dataPreliminaries, dir, dataAllWords, dataFirstTopic }) => {
               </SwiperSlide>
 
 
-
-
-
-
-              <SwiperSlide>
-                <div className={styles.img_container}>
-                  <motion.img initial={{ opacity: 0, scale: 1.1, x: 0 }}
-                    whileInView={{ opacity: 1, scale: 1.1, x: 20 }}
-                    className={`${styles.img_3} `} src="/assets/imgs/img_5.png" alt="" />
-
-                  <motion.img
-                    initial={{ opacity: 0, scale: 0.9, x: 0, }}
-                    whileInView={{ opacity: 1, scale: 0.9, x: -20, }}
-                    className={`${styles.img_4} `} src="/assets/imgs/img_6  .png" alt="" />
-                </div>
-              </SwiperSlide>
             </Swiper>
 
             <div className={styles.text_container}>
@@ -160,6 +157,23 @@ const Hero = ({ dataPreliminaries, dir, dataAllWords, dataFirstTopic }) => {
 
               </SwiperSlide>
 
+
+              <SwiperSlide>
+                <div className={`${styles.img_container} ${styles.img_container2}`}>
+                  <motion.img initial={{ opacity: 0, scale: 1.1, x: 0 }}
+                    whileInView={{ opacity: 1, scale: 1.1, x: 20 }}
+                    className={`${styles.img_5} `} src="/assets/imgs/img_5.png" alt="" />
+
+                  <motion.img
+                    initial={{ opacity: 0, scale: 0.9, x: 0, }}
+                    whileInView={{ opacity: 1, scale: 0.9, x: -20, }}
+                    className={`${styles.img_6} `} src="/assets/imgs/img_6.png" alt="" />
+                </div>
+              </SwiperSlide>
+
+
+
+
               <SwiperSlide>
                 <div className={styles.img_container}>
                   <motion.img initial={{ opacity: 0, scale: 1.1, x: 0 }}
@@ -171,73 +185,6 @@ const Hero = ({ dataPreliminaries, dir, dataAllWords, dataFirstTopic }) => {
                     whileInView={{ opacity: 1, scale: 0.9, x: -20, }}
                     className={`${styles.img_4} `} src="/assets/imgs/img_4.png" alt="" />
                 </div>
-              </SwiperSlide>
-
-              <SwiperSlide>
-                <div
-
-
-                  className={styles.img_container}
-
-                >
-                  <div className={styles.trans}>
-                    <motion.img initial={{ opacity: 0, scale: (1.5), x: 0 }}
-                      whileInView={{ opacity: 1, scale: (1.5), x: 20 }}
-                      className={`${styles.img_1} `} src="/assets/svgs/img1.png" alt="" />
-
-                  </div>
-                  <motion.img
-                    initial={{ opacity: 0, x: 0, scale: (1.2), }}
-                    whileInView={{ opacity: 1, x: -30, scale: (1.2), }}
-
-                    className={`${styles.img_2} `} src="/assets/svgs/img_2.svg" alt="" />
-
-                </div>
-
-              </SwiperSlide>
-              <SwiperSlide>
-                <div
-
-
-                  className={styles.img_container}
-
-                >
-                  <div className={styles.trans}>
-                    <motion.img initial={{ opacity: 0, scale: (1.5), x: 0 }}
-                      whileInView={{ opacity: 1, scale: (1.5), x: 20 }}
-                      className={`${styles.img_1} `} src="/assets/svgs/img1.png" alt="" />
-
-                  </div>
-                  <motion.img
-                    initial={{ opacity: 0, x: 0, scale: (1.2), }}
-                    whileInView={{ opacity: 1, x: -30, scale: (1.2), }}
-
-                    className={`${styles.img_2} `} src="/assets/svgs/img_2.svg" alt="" />
-
-                </div>
-
-              </SwiperSlide>
-              <SwiperSlide>
-                <div
-
-
-                  className={styles.img_container}
-
-                >
-                  <div className={styles.trans}>
-                    <motion.img initial={{ opacity: 0, scale: (1.5), x: 0 }}
-                      whileInView={{ opacity: 1, scale: (1.5), x: 20 }}
-                      className={`${styles.img_1} `} src="/assets/svgs/img1.png" alt="" />
-
-                  </div>
-                  <motion.img
-                    initial={{ opacity: 0, x: 0, scale: (1.2), }}
-                    whileInView={{ opacity: 1, x: -30, scale: (1.2), }}
-
-                    className={`${styles.img_2} `} src="/assets/svgs/img_2.svg" alt="" />
-
-                </div>
-
               </SwiperSlide>
 
             </Swiper>
