@@ -169,7 +169,7 @@ const Footer = ({
               </p>
 
               <div className={styles.copy}>
-                <p>{dataAllWords?.footer_desc2} {formatYear(year, currentLocale)}</p>
+                <p>{dataAllWords?.footer_desc2}  {formatYear(year, currentLocale)}</p>
               </div>
             </div>
           </div>
