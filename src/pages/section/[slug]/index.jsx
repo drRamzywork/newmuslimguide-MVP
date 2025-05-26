@@ -23,7 +23,7 @@ const Section = ({ TopicDetails }) => {
   const siteURL = process.env.NEXT_PUBLIC_APP_DOMAIN;
   const stieName = dataAllSettings?.site_name;
 
-  const description = TopicDetails.description;
+  const description = TopicDetails?.description || "";
   const plainText = description.replace(/<\/?[^>]+(>|$)/g, "");
   const topicCover = TopicDetails?.cover;
   return (
@@ -182,45 +182,118 @@ const Section = ({ TopicDetails }) => {
 
 export default Section;
 
+// export async function getStaticProps({ params, locale }) {
+//   const apiDomain = process.env.NEXT_PUBLIC_API_DOMAIN;
+//   const { slug } = params;
+
+//   console.log("API Domain:", process.env.NEXT_PUBLIC_API_DOMAIN);
+
+//   const resTopicDetails = await fetch(`${apiDomain}/category/${slug}`, {
+//     method: "GET",
+//     headers: {
+//       locale: locale,
+//     },
+//   });
+//   const TopicDetails = await resTopicDetails.json();
+
+//   return {
+//     props: {
+//       TopicDetails: TopicDetails?.data || [],
+//     },
+//     revalidate: 10,
+//   };
+// }
+
+// export async function getStaticPaths({ locale }) {
+//   const apiDomain = process.env.NEXT_PUBLIC_API_DOMAIN;
+
+//   // Fetch all sections from the API
+//   const resAllSections = await fetch(`${apiDomain}/categories`, {
+//     headers: {
+//       locale: locale,
+//     },
+//   });
+//   const dataAllSections = await resAllSections.json();
+
+//   // Map the slugs to paths
+//   const paths = dataAllSections.data.map((item) => ({
+//     params: { slug: item.slug },
+//   }));
+
+//   // Return the paths
+//   return {
+//     paths,
+//     fallback: "blocking",
+//   };
+// }
+
 export async function getStaticProps({ params, locale }) {
   const apiDomain = process.env.NEXT_PUBLIC_API_DOMAIN;
   const { slug } = params;
 
-  const resTopicDetails = await fetch(`${apiDomain}/category/${slug}`, {
-    method: "GET",
-    headers: {
-      locale: locale,
-    },
-  });
-  const TopicDetails = await resTopicDetails.json();
+  try {
+    const res = await fetch(`${apiDomain}/category/${slug}`, {
+      method: "GET",
+      headers: {
+        locale: locale,
+      },
+    });
 
-  return {
-    props: {
-      TopicDetails: TopicDetails?.data || [],
-    },
-    revalidate: 10,
-  };
+    if (!res.ok) {
+      console.error("Failed to fetch topic details", res.status);
+      return { notFound: true };
+    }
+
+    const json = await res.json();
+
+    if (!json?.data) {
+      console.error("No topic data returned");
+      return { notFound: true };
+    }
+
+    return {
+      props: {
+        TopicDetails: json.data,
+      },
+      revalidate: 10,
+    };
+  } catch (error) {
+    console.error("Error in getStaticProps:", error);
+    return { notFound: true };
+  }
 }
-
 export async function getStaticPaths({ locale }) {
   const apiDomain = process.env.NEXT_PUBLIC_API_DOMAIN;
 
-  // Fetch all sections from the API
-  const resAllSections = await fetch(`${apiDomain}/categories`, {
-    headers: {
-      locale: locale,
-    },
-  });
-  const dataAllSections = await resAllSections.json();
+  try {
+    const res = await fetch(`${apiDomain}/categories`, {
+      headers: {
+        locale: locale,
+      },
+    });
 
-  // Map the slugs to paths
-  const paths = dataAllSections.data.map((item) => ({
-    params: { slug: item.slug },
-  }));
+    if (!res.ok) {
+      console.error("Failed to fetch all categories", res.status);
+      return { paths: [], fallback: "blocking" };
+    }
 
-  // Return the paths
-  return {
-    paths,
-    fallback: "blocking",
-  };
+    const json = await res.json();
+
+    if (!json?.data) {
+      console.error("No categories returned");
+      return { paths: [], fallback: "blocking" };
+    }
+
+    const paths = json.data.map((item) => ({
+      params: { slug: item.slug },
+    }));
+
+    return {
+      paths,
+      fallback: "blocking",
+    };
+  } catch (error) {
+    console.error("Error in getStaticPaths:", error);
+    return { paths: [], fallback: "blocking" };
+  }
 }

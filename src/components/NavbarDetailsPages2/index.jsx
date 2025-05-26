@@ -1,19 +1,35 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from "react";
 import { IoIosClose, IoIosSearch } from "react-icons/io";
-import styles from './index.module.scss'
-import Link from 'next/link';
-import { useMenu } from '@/contexts/MenuContext';
-import { useRouter } from 'next/router';
-import { TfiWorld } from 'react-icons/tfi';
-import { motion } from 'framer-motion';
-import Image from 'next/image';
+import styles from "./index.module.scss";
+import Link from "next/link";
+import { useMenu } from "@/contexts/MenuContext";
+import { useRouter } from "next/router";
+import { TfiWorld } from "react-icons/tfi";
+import { motion } from "framer-motion";
+import Image from "next/image";
 
-
-const NavbarDetailsPages2 = ({ dataAllBooks, dir, dataAllWords, dataAllLangs, stieName, dataPreliminaries, dataAllSections, slug, }) => {
-  const { menulang, setMenuLang, topicsMenu, setTopicsMenu, booksMenu,
-    setBooksMenu, isSearchOpen, setIsSearchOpen } = useMenu();
+const NavbarDetailsPages2 = ({
+  dataAllBooks,
+  dir,
+  dataAllWords,
+  dataAllLangs,
+  stieName,
+  dataPreliminaries,
+  dataAllSections,
+  slug,
+}) => {
+  const {
+    menulang,
+    setMenuLang,
+    topicsMenu,
+    setTopicsMenu,
+    booksMenu,
+    setBooksMenu,
+    isSearchOpen,
+    setIsSearchOpen,
+  } = useMenu();
   const { locale } = useRouter();
-  const router = useRouter()
+  const router = useRouter();
   const searchRef = useRef(null);
   const [searchTerm, setSearchTerm] = useState("");
 
@@ -25,18 +41,18 @@ const NavbarDetailsPages2 = ({ dataAllBooks, dir, dataAllWords, dataAllLangs, st
     };
 
     if (isSearchOpen) {
-      document.addEventListener('mousedown', handleClickOutside);
+      document.addEventListener("mousedown", handleClickOutside);
     }
 
     return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener("mousedown", handleClickOutside);
     };
   }, [isSearchOpen]);
 
   const highlightText = (text) => {
     if (!searchTerm) return text;
 
-    const regex = new RegExp(`(${searchTerm})`, 'gi');
+    const regex = new RegExp(`(${searchTerm})`, "gi");
     const parts = text.split(regex);
 
     return parts.map((part, index) =>
@@ -59,11 +75,11 @@ const NavbarDetailsPages2 = ({ dataAllBooks, dir, dataAllWords, dataAllLangs, st
 
   return (
     <>
-      <nav id='navbar' className={styles.navbar} dir={dir}>
+      <nav id="navbar" className={styles.navbar} dir={dir}>
         <div className={styles.sec_container}>
           <div className="container">
-            <div className={styles.wrapper} style={{ position: 'relative' }}>
-              <Link href={'/'} className={styles.logo}>
+            <div className={styles.wrapper} style={{ position: "relative" }}>
+              <Link href={"/"} className={styles.logo}>
                 <img src="/assets/svgs/logo.svg" alt="" />
                 <h1>{stieName}</h1>
               </Link>
@@ -73,29 +89,30 @@ const NavbarDetailsPages2 = ({ dataAllBooks, dir, dataAllWords, dataAllLangs, st
                   <p>{locale}</p>
                 </div>
 
-                <div className={styles.btn} onClick={() => setIsSearchOpen(prev => !prev)}>
+                <div
+                  className={styles.btn}
+                  onClick={() => setIsSearchOpen((prev) => !prev)}
+                >
                   <IoIosSearch />
                 </div>
-                <div className={styles.btn} onClick={() => setBooksMenu(prev => !prev)}>
-                  <img src='/assets/svgs/book.svg' alt='' />
+                <div
+                  className={styles.btn}
+                  onClick={() => setBooksMenu((prev) => !prev)}
+                >
+                  <img src="/assets/svgs/book?.svg" alt="" />
                 </div>
 
-                <div className={styles.btn} onClick={() => setTopicsMenu(prev => !prev)}>
-                  <img src='/assets/svgs/boxes.svg' alt='' />
+                <div
+                  className={styles.btn}
+                  onClick={() => setTopicsMenu((prev) => !prev)}
+                >
+                  <img src="/assets/svgs/boxes.svg" alt="" />
                 </div>
               </div>
-
-
-
-
-
             </div>
-
           </div>
-
         </div>
       </nav>
-
 
       {isSearchOpen && (
         <motion.div
@@ -107,7 +124,10 @@ const NavbarDetailsPages2 = ({ dataAllBooks, dir, dataAllWords, dataAllLangs, st
           dir={dir}
         >
           <div className={styles.menu_nav}>
-            <div className={styles.close_btn} onClick={() => setIsSearchOpen(false)}>
+            <div
+              className={styles.close_btn}
+              onClick={() => setIsSearchOpen(false)}
+            >
               <IoIosClose />
             </div>
 
@@ -141,7 +161,11 @@ const NavbarDetailsPages2 = ({ dataAllBooks, dir, dataAllWords, dataAllLangs, st
               )
               .map((section) => (
                 <li key={`section-${section.id}`}>
-                  <Link href={`/section/${section.slug}`} className="box" onClick={() => setIsSearchOpen(false)}>
+                  <Link
+                    href={`/section/${section.slug}`}
+                    className="box"
+                    onClick={() => setIsSearchOpen(false)}
+                  >
                     <p>{highlightText(section.name)}</p>
                   </Link>
                 </li>
@@ -154,7 +178,11 @@ const NavbarDetailsPages2 = ({ dataAllBooks, dir, dataAllWords, dataAllLangs, st
               )
               .map((post) => (
                 <li key={`preliminary-${post.id}`}>
-                  <Link href={`/preliminaries/${post.slug}`} className="box" onClick={() => setIsSearchOpen(false)}>
+                  <Link
+                    href={`/preliminaries/${post.slug}`}
+                    className="box"
+                    onClick={() => setIsSearchOpen(false)}
+                  >
                     <p>{highlightText(post.title)}</p>
                   </Link>
                 </li>
@@ -163,60 +191,77 @@ const NavbarDetailsPages2 = ({ dataAllBooks, dir, dataAllWords, dataAllLangs, st
         </motion.div>
       )}
 
-
-
-      {menulang &&
+      {menulang && (
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           exit={{ opacity: 1 }}
-          transition={{ duration: 0.5 }} className={styles.menu_container} dir={dir}>
+          transition={{ duration: 0.5 }}
+          className={styles.menu_container}
+          dir={dir}
+        >
           <div className={styles.menu_nav}>
-            <div className={styles.close_btn} onClick={() => setMenuLang(false)}>
+            <div
+              className={styles.close_btn}
+              onClick={() => setMenuLang(false)}
+            >
               <IoIosClose />
             </div>
 
             <div className={styles.regionals}>
               <TfiWorld />
-
             </div>
           </div>
           <ul>
-
             {Object.entries(dataAllLangs).map(([code, language]) => (
-
               <li key={code}>
                 <a href={`/${code}${router.asPath}`} className="box">
                   <p>{language?.native}</p>
-                  <div className={`${styles.circle} ${code === locale && styles.active}`} />
+                  <div
+                    className={`${styles.circle} ${
+                      code === locale && styles.active
+                    }`}
+                  />
                 </a>
               </li>
             ))}
-
           </ul>
         </motion.div>
-      }
+      )}
 
-
-      {topicsMenu &&
+      {topicsMenu && (
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           exit={{ opacity: 1 }}
-          transition={{ duration: 0.5 }} className={styles.topic_menu_container} dir={dir}>
+          transition={{ duration: 0.5 }}
+          className={styles.topic_menu_container}
+          dir={dir}
+        >
           <div className={styles.menu_nav}>
-            <div className={styles.close_btn} onClick={() => setTopicsMenu(false)}>
+            <div
+              className={styles.close_btn}
+              onClick={() => setTopicsMenu(false)}
+            >
               <IoIosClose />
             </div>
           </div>
           <ul>
-            <Link href={'/preliminaries'}>
+            <Link href={"/preliminaries"}>
               <h4>{dataAllWords?.preliminaries}</h4>
             </Link>
             {dataPreliminaries?.posts?.map((box, index) => (
-
-              <li className={`${styles.box_container} ${slug === box.slug && styles.active}`} key={index} onClick={() => setTopicsMenu(false)}>
-                <Link href={`/preliminaries/${box.slug}`} className={`${styles.box} `}>
+              <li
+                className={`${styles.box_container} ${
+                  slug === box.slug && styles.active
+                }`}
+                key={index}
+                onClick={() => setTopicsMenu(false)}
+              >
+                <Link
+                  href={`/preliminaries/${box.slug}`}
+                  className={`${styles.box} `}
+                >
                   <div className={styles.icon_container}>
                     <img src={box.icon} alt={box.title} />
                   </div>
@@ -225,15 +270,22 @@ const NavbarDetailsPages2 = ({ dataAllBooks, dir, dataAllWords, dataAllLangs, st
               </li>
             ))}
 
-
-            <Link href={'/sections'}>
+            <Link href={"/sections"}>
               <h4>{dataAllWords?.sections}</h4>
             </Link>
 
             {dataAllSections?.map((box, index) => (
-
-              <li className={`${styles.box_container} ${slug === box.slug && styles.active}`} key={index} onClick={() => setTopicsMenu(false)}>
-                <Link href={`/section/${box.slug}`} className={`${styles.box} `}>
+              <li
+                className={`${styles.box_container} ${
+                  slug === box.slug && styles.active
+                }`}
+                key={index}
+                onClick={() => setTopicsMenu(false)}
+              >
+                <Link
+                  href={`/section/${box.slug}`}
+                  className={`${styles.box} `}
+                >
                   <div className={styles.icon_container}>
                     <img src={box.cover} alt={box.name} />
                   </div>
@@ -242,183 +294,165 @@ const NavbarDetailsPages2 = ({ dataAllBooks, dir, dataAllWords, dataAllLangs, st
               </li>
             ))}
           </ul>
-
-
-
         </motion.div>
-      }
+      )}
 
-      {booksMenu &&
+      {booksMenu && (
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           exit={{ opacity: 1 }}
-          transition={{ duration: 0.5 }} className={`${styles.topic_menu_container} ${styles.books_menu_container}`} dir={dir}>
+          transition={{ duration: 0.5 }}
+          className={`${styles.topic_menu_container} ${styles.books_menu_container}`}
+          dir={dir}
+        >
           <div className={styles.menu_nav}>
-            <div className={styles.close_btn} onClick={() => setBooksMenu(false)}>
+            <div
+              className={styles.close_btn}
+              onClick={() => setBooksMenu(false)}
+            >
               <IoIosClose />
             </div>
           </div>
           <ul>
-            <Link href={'#'}>
+            <Link href={"#"}>
               <h4>{dataAllWords?.books}</h4>
             </Link>
-            {console.log(dataAllBooks, "dataAllBooks")}
-            <div className={styles.books_container} dir={'ltr'}>
-              {/* {dataAllBooks?.map((book, index) => (
-                <div className={`${styles.book} ${book.regional === locale && styles.active}`} key={index}>
-                  <div className={styles.img_container}>
-                    <Image src={book.image} alt={book.book_title} width={87.38} height={125.82} />
-                  </div>
+            <div className={styles.books_container} dir={"ltr"}>
+              {dataAllBooks
+                ?.sort((a, b) => {
+                  const languageCodeA = a.regional.split("_")[0]; // "ar"
+                  const languageCodeB = b.regional.split("_")[0]; // "ar"
 
-                  <div className={styles.text_container}>
-                    <div className={styles.regional}>
-                      <div className={styles.icon_container}>
-                        <Image src={'/assets/svgs/langs.svg'} alt='' width={12} height={12} />
+                  // Check if 'a.regional' or 'b.regional' matches the current locale
+                  if (languageCodeA === locale) return -1; // If 'a.regional' matches, it should come first
+                  if (languageCodeB === locale) return 1; // If 'b.regional' matches, it should come first
+                  return 0; // No change if neither match
+                })
+                .map((book, index) => (
+                  <div
+                    className={`${styles.book} ${
+                      book?.regional.split("_")[0] === locale && styles.active
+                    }`}
+                    key={index}
+                  >
+                    <div className={styles.img_container}>
+                      <Image
+                        src={book?.image}
+                        alt={book?.book_title}
+                        width={87.38}
+                        height={125.82}
+                      />
+                    </div>
+
+                    <div className={styles.text_container}>
+                      <div className={styles.lang}>
+                        <div className={styles.icon_container}>
+                          <Image
+                            src={"/assets/svgs/langs.svg"}
+                            alt=""
+                            width={12}
+                            height={12}
+                          />
+                        </div>
+                        <p>{book?.native}</p>
                       </div>
-                      <p>{book.native}</p>
-                    </div>
-                    <div className={styles.title}>
-                      <h3>{book.book_title}</h3>
-                    </div>
-
-                    <div className={styles.info}>
-                      <div className={styles.size}>
-                        <div className={styles.icon_container}>
-                          <Image src={'/assets/svgs/size.svg'} alt='' width={12} height={12} />
-                        </div>
-                        <p>{book.size}</p>
-                      </div>
-
-                      <div className={styles.pages}>
-                        <div className={styles.icon_container}>
-                          <Image src={'/assets/svgs/pages.svg'} alt='' width={12} height={12} />
-                        </div>
-                        <p>{book.pages}</p>
-
-                      </div>
-
-                    </div>
-                    <div className={styles.nums}>
-                      <p><strong>ISBN: </strong> {book.isbn}</p>
-                      <p><strong>Edition: </strong> {book.edition}</p>
-                    </div>
-
-                    <div className={styles.btns_container}>
-
-                      <Link target={'_blank'} href={book.pdf_link}
-                        className={styles.btn_container}>
-                        <button>
-                          PDF
-                        </button>
-                        <div className={styles.icon_container}>
-                          <Image src={'/assets/svgs/pdf.svg'} alt='' width={20} height={20} />
-                        </div>
-
-                      </Link>
-                      <Link target={'_blank'} href={book.pdf_link}
-                        className={styles.btn_container}>
-                        <button>
-                          PDF
-                        </button>
-                        <div className={styles.icon_container}>
-                          <Image src={'/assets/svgs/pdf.svg'} alt='' width={20} height={20} />
-                        </div>
-
-                      </Link>
-                    </div>
-                  </div>
-                </div>
-              ))} */}
-
-              {dataAllBooks?.sort((a, b) => {
-                // Extract language codes from 'a.regional' and 'b.regional'
-                const languageCodeA = a.regional.split('_')[0];  // "ar"
-                const languageCodeB = b.regional.split('_')[0];  // "ar"
-
-                // Check if 'a.regional' or 'b.regional' matches the current locale
-                if (languageCodeA === locale) return -1;  // If 'a.regional' matches, it should come first
-                if (languageCodeB === locale) return 1;   // If 'b.regional' matches, it should come first
-                return 0;  // No change if neither match
-              }).map((book, index) => (
-                <div className={`${styles.book} ${book.regional.split('_')[0] === locale && styles.active}`} key={index}>
-                  <div className={styles.img_container}>
-                    <Image src={book.image} alt={book.book_title} width={87.38} height={125.82} />
-                  </div>
-
-                  <div className={styles.text_container}>
-                    <div className={styles.lang}>
-                      <div className={styles.icon_container}>
-                        <Image src={'/assets/svgs/langs.svg'} alt='' width={12} height={12} />
-                      </div>
-                      <p>{book.native}</p>
-                    </div>
-                    <div className={styles.title}>
-                      <h3>{book.book_title}</h3>
-                    </div>
-
-                    <div className={styles.info}>
-                      <div className={styles.size}>
-                        <div className={styles.icon_container}>
-                          <Image src={'/assets/svgs/size.svg'} alt='' width={12} height={12} />
-                        </div>
-                        <p>{book.size}</p>
+                      <div className={styles.title}>
+                        <h3>{book?.book_title}</h3>
                       </div>
 
-                      <div className={styles.pages}>
-                        <div className={styles.icon_container}>
-                          <Image src={'/assets/svgs/pages.svg'} alt='' width={12} height={12} />
-                        </div>
-                        <p>{book.pages}</p>
-                      </div>
-                    </div>
-                    <div className={styles.nums}>
-                      <p><strong>ISBN: </strong> {book.isbn}</p>
-                      <p><strong>Edition: </strong> {book.edition}</p>
-                    </div>
-
-                    <div className={styles.btns_container}>
-                      {book.pdf_link &&
-                        <Link target={'_blank'} href={book.pdf_link} className={styles.btn_container}>
-                          <button>
-                            PDF
-                          </button>
+                      <div className={styles.info}>
+                        <div className={styles.size}>
                           <div className={styles.icon_container}>
-                            <Image src={'/assets/svgs/pdf.svg'} alt='' width={20} height={20} />
+                            <Image
+                              src={"/assets/svgs/size.svg"}
+                              alt=""
+                              width={12}
+                              height={12}
+                            />
                           </div>
-                        </Link>
-                      }
+                          <p>{book?.size}</p>
+                        </div>
 
-                      {book.mp3_link &&
-                        <Link target={'_blank'} href={book.mp3_link} className={`${styles.btn_container} ${styles.mp3}`}>
-                          <button>
-                            mp3
-                          </button>
+                        <div className={styles.pages}>
                           <div className={styles.icon_container}>
-                            <Image src={'/assets/svgs/mp3.svg'} alt='' width={20} height={20} />
+                            <Image
+                              src={"/assets/svgs/pages.svg"}
+                              alt=""
+                              width={12}
+                              height={12}
+                            />
                           </div>
-                        </Link>
-                      }
+                          <p>{book?.pages}</p>
+                        </div>
+                      </div>
+                      <div className={styles.nums}>
+                        <p>
+                          <strong>ISBN: </strong> {book?.isbn}
+                        </p>
+                        <p>
+                          <strong>Edition: </strong> {book?.edition}
+                        </p>
+                      </div>
 
+                      <div className={styles.btns_container}>
+                        {book?.pdf_link && (
+                          <Link
+                            target={"_blank"}
+                            href={book?.pdf_link}
+                            className={styles.btn_container}
+                          >
+                            <button>PDF</button>
+                            <div className={styles.icon_container}>
+                              <Image
+                                src={"/assets/svgs/pdf.svg"}
+                                alt=""
+                                width={20}
+                                height={20}
+                              />
+                            </div>
+                          </Link>
+                        )}
+
+                        {book?.mp3_link && (
+                          <Link
+                            target={"_blank"}
+                            href={book?.mp3_link}
+                            className={`${styles.btn_container} ${styles.mp3}`}
+                          >
+                            <button>mp3</button>
+                            <div className={styles.icon_container}>
+                              <Image
+                                src={"/assets/svgs/mp3.svg"}
+                                alt=""
+                                width={20}
+                                height={20}
+                              />
+                            </div>
+                          </Link>
+                        )}
+                      </div>
                     </div>
                   </div>
-                </div>
-              ))}
+                ))}
             </div>
           </ul>
+        </motion.div>
+      )}
 
-
-        </motion.div >
-      }
-
-
-      {
-        (menulang || topicsMenu || isSearchOpen || booksMenu) &&
-        <div className={styles.layer} onClick={() => { setMenuLang(false), setTopicsMenu(false), setIsSearchOpen(false), setBooksMenu(false) }} />
-      }
+      {(menulang || topicsMenu || isSearchOpen || booksMenu) && (
+        <div
+          className={styles.layer}
+          onClick={() => {
+            setMenuLang(false),
+              setTopicsMenu(false),
+              setIsSearchOpen(false),
+              setBooksMenu(false);
+          }}
+        />
+      )}
     </>
+  );
+};
 
-  )
-}
-
-export default NavbarDetailsPages2
+export default NavbarDetailsPages2;

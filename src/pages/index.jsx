@@ -3,16 +3,13 @@ import Home from "@/components/Home";
 import { useRouter } from "next/router";
 import { useSiteData } from "@/contexts/SiteDataContext";
 
-export default function App({ }) {
-  const {
-    dataAllSettings,
-  } = useSiteData();
-  const imagePath = '/logo.png';
+export default function App({}) {
+  const { dataAllSettings } = useSiteData();
+  const imagePath = "/logo.png";
   const { locale } = useRouter();
   const siteURL = process.env.NEXT_PUBLIC_APP_DOMAIN;
   const siteDescrription = dataAllSettings?.site_description;
   const siteName = dataAllSettings?.site_name;
-
 
   return (
     <>
@@ -32,14 +29,8 @@ export default function App({ }) {
         <meta name="apple-mobile-web-app-capable" content="no" />
         <meta name="apple-mobile-web-app-status-bar-style" content="black" />
         <meta name="apple-mobile-web-app-title" content={siteName} />
-        <link
-          rel="apple-touch-icon"
-          href={`${siteURL}${imagePath}`}
-        />
-        <link
-          rel="apple-touch-startup-image"
-          href={`${siteURL}${imagePath}`}
-        />
+        <link rel="apple-touch-icon" href={`${siteURL}${imagePath}`} />
+        <link rel="apple-touch-startup-image" href={`${siteURL}${imagePath}`} />
         <meta name="author" content={siteName} />
         <meta name="description" content={siteDescrription} />
         <link rel="canonical" href={`${siteURL}/${locale}`} />
@@ -57,41 +48,24 @@ export default function App({ }) {
         <meta property="og:site_name" content={siteName} />
         <meta property="og:locale" content={locale} />
         <meta property="og:locale:alternate" content={locale} />
-        <meta
-          property="og:url"
-          content={`${siteURL}/${locale}`}
-        />
+        <meta property="og:url" content={`${siteURL}/${locale}`} />
         <meta property="og:title" content={siteName} />
         <meta property="og:description" content={siteDescrription} />
-        <meta
-          property="og:image"
-          content={`${siteURL}${imagePath}`}
-        />
+        <meta property="og:image" content={`${siteURL}${imagePath}`} />
         <meta itemProp="name" content={siteName} />
         <meta itemProp="author" content={siteName} />
-        <meta
-          itemProp="image"
-          content={`${siteURL}${imagePath}`}
-        />
+        <meta itemProp="image" content={`${siteURL}${imagePath}`} />
         <meta itemProp="description" content={siteDescrription} />
-        <meta
-          name="twitter:image"
-          content={`${siteURL}${imagePath}`}
-        />
+        <meta name="twitter:image" content={`${siteURL}${imagePath}`} />
         <meta name="twitter:card" content="summary" />
         <meta name="twitter:site" content="@" />
         <meta name="twitter:creator" content="@" />
         <meta name="twitter:title" content={siteName} />
-        <meta
-          name="twitter:image:src"
-          content={`${siteURL}${imagePath}`}
-        />
+        <meta name="twitter:image:src" content={`${siteURL}${imagePath}`} />
         <meta name="twitter:description" content={siteDescrription} />
       </Head>
 
       <Home />
-
     </>
   );
 }
-
