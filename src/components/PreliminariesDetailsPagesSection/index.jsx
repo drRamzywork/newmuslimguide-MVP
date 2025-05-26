@@ -1,4 +1,4 @@
-"use-client";
+"use client";
 import { useEffect, useState, useRef } from "react";
 import { IoIosArrowForward } from "react-icons/io";
 import Link from "next/link";
@@ -42,7 +42,9 @@ const PreliminariesDetailsPagesSection = ({
   const sectionRef = useRef(null);
 
   useEffect(() => {
-    // document.documentElement.style.setProperty("--main_color", main_color);
+    if (typeof window !== "undefined" && typeof document !== "undefined") {
+      document.documentElement.style.setProperty("--main_color", main_color);
+    }
 
     if (typeof window !== "undefined" && sectionData?.body) {
       console.log("Original Section Data:", sectionData.body);
@@ -129,7 +131,7 @@ const PreliminariesDetailsPagesSection = ({
           <h2
             id={child.slug}
             className="text-3xl w-full leading-[50px] text-gray-50 bg-main-color p-4 lg:text-3xl dark:text-white custom-border-radius"
-            style={{ color: main_color }}
+            // style={{ color: main_color }}
           >
             {child.title}
           </h2>
