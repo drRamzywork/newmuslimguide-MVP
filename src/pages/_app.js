@@ -297,7 +297,7 @@ MyApp.getInitialProps = async (appContext) => {
 
   const baseDomain = isDevelopment
     ? "http://localhost:3000" // عنوان ثابت للبيئة المحلية
-    : process.env.NEXT_PUBLIC_APP_DOMAIN; // عنوان من ملف env في الإنتاج
+    : "https://newmuslimguide-mvp.vercel.app"; // عنوان من ملف env في الإنتاج
 
   try {
     const res = await fetch(`${baseDomain}/api/siteData`, {

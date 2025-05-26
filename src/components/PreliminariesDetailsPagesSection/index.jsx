@@ -1,4 +1,3 @@
-"use client";
 import { useEffect, useState, useRef } from "react";
 import { IoIosArrowForward } from "react-icons/io";
 import Link from "next/link";
