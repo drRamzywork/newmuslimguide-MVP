@@ -42,7 +42,7 @@ const PreliminariesDetailsPagesSection = ({
   const sectionRef = useRef(null);
 
   useEffect(() => {
-    document.documentElement.style.setProperty("--main_color", main_color);
+    // document.documentElement.style.setProperty("--main_color", main_color);
 
     if (typeof window !== "undefined" && sectionData?.body) {
       console.log("Original Section Data:", sectionData.body);
