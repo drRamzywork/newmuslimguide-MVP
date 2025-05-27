@@ -64,7 +64,6 @@ export default function App({}) {
         <meta name="twitter:image:src" content={`${siteURL}${imagePath}`} />
         <meta name="twitter:description" content={siteDescrription} />
       </Head>
-
       <Home />
     </>
   );
