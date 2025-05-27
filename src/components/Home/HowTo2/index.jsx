@@ -14,7 +14,7 @@ const HowTo2 = ({ dataPostWudoo, dir, dataPostPray }) => {
               className={styles.card}
             >
               <div className={styles.img_container}>
-                <Image
+                <img
                   width={372}
                   height={231}
                   src={dataPostWudoo?.image}
@@ -31,7 +31,7 @@ const HowTo2 = ({ dataPostWudoo, dir, dataPostPray }) => {
               className={styles.card}
             >
               <div className={styles.img_container}>
-                <Image
+                <img
                   width={372}
                   height={231}
                   src={dataPostPray?.image}
