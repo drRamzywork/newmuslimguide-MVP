@@ -99,7 +99,7 @@ const NavbarDetailsPages2 = ({
                   className={styles.btn}
                   onClick={() => setBooksMenu((prev) => !prev)}
                 >
-                  <img src="/assets/svgs/book?.svg" alt="" />
+                  <img src="/assets/svgs/book.svg" alt="" />
                 </div>
 
                 <div
